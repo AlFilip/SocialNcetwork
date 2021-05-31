@@ -1,4 +1,28 @@
 .navbar {
-    background-color: aqua;
+    background-color: #fafafa;
     grid-area: n;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item {
+    padding: 20px;
+    border-radius: 10%;
+}
+
+.item:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px rgba(135, 135, 135, 0.8);
+    transition: 0.3s;
+}
+
+.item{
+    text-decoration: none;
+    color: #868686;
+}
+
+.active{
+    color: #363636;
 }

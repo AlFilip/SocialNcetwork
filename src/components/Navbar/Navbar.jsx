@@ -1,24 +1,31 @@
 import React from "react";
-import s from "./Navbar.module.css";
+import {navbar, item, active} from "./Navbar.module.css";
+import {NavLink} from "react-router-dom";
 
 export default function Navbar() {
     return (
-        <div className={s.navbar}>
-            <div>
-                <a href="#">My Profile</a>
-            </div>
-            <div>
-                 <a href="#">Messages</a>
-            </div>
-            <div>
-                 <a href="#">Photo</a>
-            </div>
-            <div>
-                 <a href="#">Music</a>
-            </div>
-            <div>
-                 <a href="#">Settings</a>
-            </div>
+        <div className={navbar}>
+
+            <NavLink className={item} to="/profile" activeClassName={active}>
+                <i className="fi-rr-user"/>
+            </NavLink>
+
+            <NavLink className={item} to="/dialogs" activeClassName={active}>
+                <i className="fi-rr-envelope"/>
+            </NavLink>
+
+            <NavLink className={item} to="/news" activeClassName={active}>
+                <i className="fi-rr-world"/>
+            </NavLink>
+
+            <NavLink className={item} to="/music" activeClassName={active}>
+                <i className="fi-rr-music-alt"/>
+            </NavLink>
+
+            <NavLink className={item} to="/settings" activeClassName={active}>
+                <i className="fi-rr-settings-sliders"/>
+            </NavLink>
+
         </div>
     )
 }

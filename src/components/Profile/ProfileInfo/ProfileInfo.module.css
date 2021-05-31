@@ -1,0 +1,13 @@
+.profile_info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile_info img {
+    vertical-align: middle;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid #d5c6c6;
+}

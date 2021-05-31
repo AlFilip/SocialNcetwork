@@ -1,5 +1,17 @@
 .item {
-    color: blue;
+    width: 80%;
+    borner: none;
+    border-radius: 0;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.senderInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .item img {
@@ -8,4 +20,8 @@
     height: 50px;
     border-radius: 50%;
     border: 1px solid #d5c6c6;
+}
+
+.senderName{
+    padding: 20px;
 }

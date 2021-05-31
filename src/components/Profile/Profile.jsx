@@ -1,17 +1,15 @@
 import React from "react";
 
-import s from "./Profile.module.css";
+import {profile} from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
 export default function Profile() {
     return (
-        <div className={s.profile}>
-            <div className={s.profile_info}>
-                <img src="https://i.redd.it/dh5otp8kcf741.png" alt="" />
-                <div>Profile Text</div>
-            </div>
+        <div className={profile}>
+            <ProfileInfo />
             <MyPosts />
         </div>
-    )
+    );
 }

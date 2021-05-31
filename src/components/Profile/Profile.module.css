@@ -1,11 +1,5 @@
-.profile {}
-
-.profile_info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.profile {
+    padding: 30px;
 }
 
-.profile_info img {
-    width: 90px;
-}
+
