@@ -11,19 +11,21 @@ import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 
 
-export default function App() {
+export default function App(props) {
     return (
         <BrowserRouter>
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route exact path={'/dialogs'} component={Dialogs}/>
-                <Route path={'/profile'} component={Profile}/>
-                <Route path={'/music'} component={Music}/>
-                <Route path={'/news'} component={News}/>
-                <Route path={'/settings'} component={Settings}/>
+                <Route exact path={'/dialogs'}
+                       render={() => <Dialogs messagesPage={props.state.messagesPage}/>}/>
+                <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                <Route path={'/music'} render={Music}/>
+                <Route path={'/news'} render={News}/>
+                <Route path={'/settings'} render={Settings}/>
+                {News}
             </div>
-            <Footer />
+            <Footer/>
         </BrowserRouter>
     )
 }

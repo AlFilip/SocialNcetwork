@@ -4,7 +4,10 @@ import {posts, posts_list, posts_title, posts_add_form} from "./MyPosts.module.c
 import Post from "./Post/Post";
 
 
-export default function MyPosts() {
+export default function MyPosts(props) {
+    const postsConverted = props.postData
+        .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
+
     return (
         <>
             <div className={posts}>
@@ -17,8 +20,7 @@ export default function MyPosts() {
                 </div>
             </div>
             <div className={posts_list}>
-                <Post name={"Alexey Filippov"} message={"Hello World!"} likesCount={25}/>
-                <Post name={"Alexey Filippov"} message={"Bla bla bla"} likesCount={20}/>
+                {postsConverted}
             </div>
         </>
     )

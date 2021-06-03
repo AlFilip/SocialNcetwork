@@ -1,40 +1,31 @@
 import React from "react";
 
-import {NavLink} from "react-router-dom";
-import {dialogs, dialogsContent, dialogsList, dialogItem, activeDialog, messagesList, messageItem} from "./Dialogs.module.css"
+import {
+    dialogs,
+    dialogsContent,
+    dialogsList,
+    messagesList
+} from "./Dialogs.module.css"
+import DialogItem from "./Dialog/Dialog";
+import MessageItem from "./Message/Message";
 
 
-const DialogItem = ({id, name}) => {
-    return (
-        <div className={dialogItem}>
-            <NavLink to={`/dialogs/${id}`} activeClassName={activeDialog}>
-                {name}
-            </NavLink>
-        </div>
-    );
-}
+export default function Dialogs(props) {
+    const dialogsConv = props.dialogData
+        .map(i => <DialogItem id={i.id} name={i.name}/>);
 
-const MessageItem = ({message}) => {
-    return (
-        <div className={messageItem}>
-            {message}
-        </div>
-    );
-}
+    const messagesConv = props.messageData
+        .map(m => <MessageItem message={m.message}/>);
 
-export default function Dialogs() {
     return (
         <div className={dialogs}>
             <h2>Dialogs</h2>
             <div className={dialogsContent}>
                 <div className={dialogsList}>
-                    <DialogItem id={1} name={"Alex"} />
-                    <DialogItem id={2} name={"Sergey"} />
-                    <DialogItem id={3} name={"Artem"} />
+                    {dialogsConv}
                 </div>
                 <div className={messagesList}>
-                    <MessageItem message={"Hi man"} />
-                    <MessageItem message={"How you doing?"} />
+                    {messagesConv}
                 </div>
             </div>
         </div>

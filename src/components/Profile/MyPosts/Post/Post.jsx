@@ -1,6 +1,6 @@
 import React from "react";
 
-import {item, senderInfo, senderName} from "./Post.module.css";
+import {item, senderInfo, senderName, likesCounter} from "./Post.module.css";
 
 
 export default function Post({name, message, likesCount}) {
@@ -12,11 +12,11 @@ export default function Post({name, message, likesCount}) {
                     {name}
                 </div>
             </div>
-                <div>
-                    {message}
-                </div>
             <div>
-                <span>Likes: </span>
+                {message}
+            </div>
+            <div className={likesCounter}>
+                <span><i className="fi-rr-heart"/>  </span>
                 {likesCount}
             </div>
         </div>

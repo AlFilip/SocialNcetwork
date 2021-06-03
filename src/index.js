@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import state from "./redux/state";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App profilePage={state.profilePage} messagesPage={state.messagesPage} />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -15,3 +17,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
