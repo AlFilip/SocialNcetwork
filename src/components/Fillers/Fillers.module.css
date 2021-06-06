@@ -1,0 +1,7 @@
+.LeftFiller{
+    grid-area: l;
+}
+
+.RightFiller{
+    grid-area: r;
+}

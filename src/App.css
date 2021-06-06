@@ -1,13 +1,15 @@
 #root {
-  margin: 0 auto;
-  max-width: 1200px;
-  display: grid;
-  grid-template-areas: "h h" "n c" "f f";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 100px 1fr;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-areas:  "l h r"
+                          "l c r"
+                          "l f r";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 100px 1fr 100px;
 }
 
 .app-wrapper-content {
-  background-color: rgba(68, 68, 68, 0.1);
-  grid-area: c;
+    background-color: rgba(68, 68, 68, 0.1);
+    grid-area: c;
 }

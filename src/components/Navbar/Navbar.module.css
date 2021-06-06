@@ -1,6 +1,10 @@
 .navbar {
-    background-color: #fafafa;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
     grid-area: n;
+    background-color: #eee;
     padding: 20px;
     display: flex;
     flex-direction: column;

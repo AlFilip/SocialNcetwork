@@ -9,22 +9,28 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
+import Sidebar from "./components/Sidebar/Sidebar";
+import LeftFiller from "./components/Fillers/LeftFiller";
+import RightFiller from "./components/Fillers/RightFiller";
 
 
 export default function App(props) {
     return (
         <BrowserRouter>
-            <Header/>
-            <Navbar/>
+            <Header />
+            <Navbar />
+            <LeftFiller />
+            <RightFiller />
             <div className="app-wrapper-content">
                 <Route exact path={'/dialogs'}
-                       render={() => <Dialogs messagesPage={props.state.messagesPage}/>}/>
-                <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                       render={() => <Dialogs messagesPage={props.messagesPage}/>}/>
+                <Route path={'/profile'} render={() => <Profile profilePage={props.profilePage}/>}/>
                 <Route path={'/music'} render={Music}/>
                 <Route path={'/news'} render={News}/>
                 <Route path={'/settings'} render={Settings}/>
                 {News}
             </div>
+            <Sidebar sidebar={props.sidebar} />
             <Footer/>
         </BrowserRouter>
     )

@@ -11,12 +11,11 @@ import MessageItem from "./Message/Message";
 
 
 export default function Dialogs(props) {
-    const dialogsConv = props.dialogData
+    const dialogsConv = props.messagesPage.dialogData
         .map(i => <DialogItem id={i.id} name={i.name}/>);
 
-    const messagesConv = props.messageData
+    const messagesConv = props.messagesPage.messageData
         .map(m => <MessageItem message={m.message}/>);
-
     return (
         <div className={dialogs}>
             <h2>Dialogs</h2>

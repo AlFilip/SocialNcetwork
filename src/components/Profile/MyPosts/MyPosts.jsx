@@ -7,7 +7,7 @@ import Post from "./Post/Post";
 export default function MyPosts(props) {
     const postsConverted = props.postData
         .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
-
+    const showAlert = () => alert("Alert");
     return (
         <>
             <div className={posts}>
@@ -16,7 +16,7 @@ export default function MyPosts(props) {
                 </div>
                 <div className={posts_add_form}>
                     <textarea name="postInput" id="postInput" cols="100" rows="5" placeholder="Enter here"/>
-                    <button>Add Post</button>
+                    <button onClick={showAlert}>Add Post</button>
                 </div>
             </div>
             <div className={posts_list}>

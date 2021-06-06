@@ -8,7 +8,7 @@ import state from "./redux/state";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App profilePage={state.profilePage} messagesPage={state.messagesPage} />
+    <App profilePage={state.profilePage} messagesPage={state.messagesPage} sidebar={state.sidebar}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
