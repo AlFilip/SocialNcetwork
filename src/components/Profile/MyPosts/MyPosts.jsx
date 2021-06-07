@@ -5,9 +5,18 @@ import Post from "./Post/Post";
 
 
 export default function MyPosts(props) {
-    const postsConverted = props.postData
+    const postsConverted = props.profilePage.postData
         .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
-    const showAlert = () => alert("Alert");
+
+    const textArea = React.createRef();
+    const addPost = () => {
+        props.profilePage.addPost();
+    };
+
+    const onPostChange = () => {
+        props.profilePage.changeNewPost(textArea.current.value);
+    }
+
     return (
         <>
             <div className={posts}>
@@ -15,8 +24,9 @@ export default function MyPosts(props) {
                     My Posts
                 </div>
                 <div className={posts_add_form}>
-                    <textarea name="postInput" id="postInput" cols="100" rows="5" placeholder="Enter here"/>
-                    <button onClick={showAlert}>Add Post</button>
+                    <textarea ref={textArea} value={props.profilePage.newPost} onChange={onPostChange}
+                              cols="100" rows="5" placeholder="Enter here" />
+                    <button onClick={addPost}>Add Post</button>
                 </div>
             </div>
             <div className={posts_list}>
