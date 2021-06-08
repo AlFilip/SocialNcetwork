@@ -23,10 +23,10 @@ export default function App(props) {
             <RightFiller/>
             <div className="app-wrapper-content">
                 <Route exact path={'/dialogs'}
-                       render={() => <Dialogs messagesPage={props.state.messagesPage}/>}/>
+                       render={() => <Dialogs messagesPage={props.state.messagesPage}
+                                              dispatch={props.dispatch}/>}/>
                 <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}
-                                                                changeNewPost={props.changeNewPost}
-                                                                addPost={props.addPost} /> }/>
+                                                                dispatch={props.dispatch}/> }/>
                 <Route path={'/music'} render={Music}/>
                 <Route path={'/news'} render={News}/>
                 <Route path={'/settings'} render={Settings}/>

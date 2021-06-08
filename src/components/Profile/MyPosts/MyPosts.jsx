@@ -10,11 +10,15 @@ export default function MyPosts(props) {
 
     const textArea = React.createRef();
     const addPost = () => {
-        props.addPost();
+        // props.addPost();
+        props.dispatch({type:"ADD-POST"})
     };
 
     const onPostChange = () => {
-        props.changeNewPost(textArea.current.value);
+        props.dispatch({
+            type: "CHANGE-NEW-POST",
+            newValue: textArea.current.value
+        });
     }
 
     return (

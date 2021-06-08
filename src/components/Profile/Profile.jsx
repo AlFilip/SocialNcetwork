@@ -9,8 +9,7 @@ export default function Profile(props) {
     return (
         <div className={profile}>
             <ProfileInfo/>
-            <MyPosts profilePage={props.profilePage} changeNewPost={props.changeNewPost}
-                     addPost={props.addPost}/>
+            <MyPosts profilePage={props.profilePage} dispatch={props.dispatch}/>
         </div>
     );
 }

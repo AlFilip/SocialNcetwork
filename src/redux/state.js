@@ -42,33 +42,42 @@ const store = {
     getState() {
         return this._state;
     },
-    changeNewPost(newValue) {
-        this._state.profilePage.newPost = newValue;
-        this.rerenderEntireTree();
-    },
 
-    addPost() {
-        const newPost = {
-            name: "Alexey Filippov",
-            message: this._state.profilePage.newPost,
-            likesCount: 0,
-        };
-        this._state.profilePage.postData.push(newPost);
-        this._state.profilePage.newPost = "";
-        this.rerenderEntireTree();
-    },
-    updateNewMessage(messageText) {
-        this._state.messagesPage.newMessage = messageText;
-        this.rerenderEntireTree();
-    },
-    sendMessage() {
-        const newMessageData = {
-            id: this._state.messagesPage.messageData.slice(-1)[0].id + 1,
-            message: this._state.messagesPage.newMessage
+
+    dispatch(action) {
+        const type = action.type;
+        switch (type) {
+            case "CHANGE-NEW-POST":
+                this._state.profilePage.newPost = action.newValue;
+                this.rerenderEntireTree();
+                break;
+            case "ADD-POST":
+                const newPost = {
+                    name: "Alexey Filippov",
+                    message: this.getState().profilePage.newPost,
+                    likesCount: 0,
+                };
+                this._state.profilePage.postData.push(newPost);
+                this._state.profilePage.newPost = "";
+                this.rerenderEntireTree();
+                break;
+            case "SEND-MESSAGE":
+                const newMessageData = {
+                    id: this._state.messagesPage.messageData.slice(-1)[0].id + 1,
+                    message: this._state.messagesPage.newMessage
+                }
+                this._state.messagesPage.messageData.push(newMessageData);
+                this._state.messagesPage.newMessage = "";
+                this.rerenderEntireTree();
+                break;
+            case "UPDATE-NEW-MESSAGE":
+                this._state.messagesPage.newMessage = action.messageText;
+                this.rerenderEntireTree();
+                break;
+            default:
+                console.log("dispatch error");
+                break;
         }
-        this._state.messagesPage.messageData.push(newMessageData);
-        this._state.messagesPage.newMessage = "";
-        this.rerenderEntireTree();
     },
 
     subscribe(observer) {

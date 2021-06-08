@@ -20,10 +20,15 @@ export default function Dialogs(props) {
 
     const textArea = React.createRef();
     const updateMessage = () => {
-        props.messagesPage.updateNewMessage(textArea.current.value);
+        // props.messagesPage.updateNewMessage(textArea.current.value);
+        props.dispatch({
+            type: "UPDATE-NEW-MESSAGE",
+            messageText: textArea.current.value
+        });
     }
     const sendMessage = () => {
-        props.messagesPage.sendMessage();
+        // props.messagesPage.sendMessage();
+        props.dispatch({type: "SEND-MESSAGE"});
     }
 
     return (
