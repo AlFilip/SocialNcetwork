@@ -1,7 +1,7 @@
 import React from "react";
-
 import {posts, posts_list, posts_title, posts_add_form} from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/state";
 
 
 export default function MyPosts(props) {
@@ -10,15 +10,12 @@ export default function MyPosts(props) {
 
     const textArea = React.createRef();
     const addPost = () => {
-        // props.addPost();
-        props.dispatch({type:"ADD-POST"})
+        props.dispatch(addPostActionCreator());
     };
 
     const onPostChange = () => {
-        props.dispatch({
-            type: "CHANGE-NEW-POST",
-            newValue: textArea.current.value
-        });
+        const text = textArea.current.value;
+        props.dispatch(onPostChangeActionCreator(text));
     }
 
     return (
@@ -28,7 +25,7 @@ export default function MyPosts(props) {
                     My Posts
                 </div>
                 <div className={posts_add_form}>
-                    <textarea ref={textArea} value={props.newPost} onChange={onPostChange}
+                    <textarea ref={textArea} value={props.profilePage.newPost} onChange={onPostChange}
                               cols="100" rows="5" placeholder="Enter here" />
                     <button onClick={addPost}>Add Post</button>
                 </div>

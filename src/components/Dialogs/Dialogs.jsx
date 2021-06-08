@@ -9,6 +9,7 @@ import {
 } from "./Dialogs.module.css"
 import DialogItem from "./Dialog/Dialog";
 import MessageItem from "./Message/Message";
+import {sendMessageActionCreator, updateMessageActionCreator} from "../../redux/state";
 
 
 export default function Dialogs(props) {
@@ -20,15 +21,11 @@ export default function Dialogs(props) {
 
     const textArea = React.createRef();
     const updateMessage = () => {
-        // props.messagesPage.updateNewMessage(textArea.current.value);
-        props.dispatch({
-            type: "UPDATE-NEW-MESSAGE",
-            messageText: textArea.current.value
-        });
+        const text = textArea.current.value;
+        props.dispatch(updateMessageActionCreator(text));
     }
     const sendMessage = () => {
-        // props.messagesPage.sendMessage();
-        props.dispatch({type: "SEND-MESSAGE"});
+        props.dispatch(sendMessageActionCreator());
     }
 
     return (
