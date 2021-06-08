@@ -17,19 +17,21 @@ import RightFiller from "./components/Fillers/RightFiller";
 export default function App(props) {
     return (
         <BrowserRouter>
-            <Header />
-            <Navbar />
-            <LeftFiller />
-            <RightFiller />
+            <Header/>
+            <Navbar/>
+            <LeftFiller/>
+            <RightFiller/>
             <div className="app-wrapper-content">
                 <Route exact path={'/dialogs'}
-                       render={() => <Dialogs messagesPage={props.messagesPage} />} />
-                <Route path={'/profile'} render={() => <Profile profilePage={props.profilePage} />} />
-                <Route path={'/music'} render={Music} />
-                <Route path={'/news'} render={News} />
-                <Route path={'/settings'} render={Settings} />
+                       render={() => <Dialogs messagesPage={props.state.messagesPage}/>}/>
+                <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}
+                                                                changeNewPost={props.changeNewPost}
+                                                                addPost={props.addPost} /> }/>
+                <Route path={'/music'} render={Music}/>
+                <Route path={'/news'} render={News}/>
+                <Route path={'/settings'} render={Settings}/>
             </div>
-            <Sidebar sidebar={props.sidebar} />
+            <Sidebar sidebar={props.state.sidebar}/>
             <Footer/>
         </BrowserRouter>
     )

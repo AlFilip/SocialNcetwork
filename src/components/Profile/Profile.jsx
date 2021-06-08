@@ -8,8 +8,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 export default function Profile(props) {
     return (
         <div className={profile}>
-            <ProfileInfo />
-            <MyPosts profilePage={props.profilePage}/>
+            <ProfileInfo/>
+            <MyPosts profilePage={props.profilePage} changeNewPost={props.changeNewPost}
+                     addPost={props.addPost}/>
         </div>
     );
 }

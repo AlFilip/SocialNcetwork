@@ -10,11 +10,11 @@ export default function MyPosts(props) {
 
     const textArea = React.createRef();
     const addPost = () => {
-        props.profilePage.addPost();
+        props.addPost();
     };
 
     const onPostChange = () => {
-        props.profilePage.changeNewPost(textArea.current.value);
+        props.changeNewPost(textArea.current.value);
     }
 
     return (
@@ -24,7 +24,7 @@ export default function MyPosts(props) {
                     My Posts
                 </div>
                 <div className={posts_add_form}>
-                    <textarea ref={textArea} value={props.profilePage.newPost} onChange={onPostChange}
+                    <textarea ref={textArea} value={props.newPost} onChange={onPostChange}
                               cols="100" rows="5" placeholder="Enter here" />
                     <button onClick={addPost}>Add Post</button>
                 </div>
