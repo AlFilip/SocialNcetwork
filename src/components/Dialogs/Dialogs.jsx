@@ -19,9 +19,8 @@ export default function Dialogs(props) {
     const messagesConv = props.messagesPage.messageData
         .map(m => <MessageItem message={m.message}/>);
 
-    const textArea = React.createRef();
-    const updateMessage = () => {
-        const text = textArea.current.value;
+        const updateMessage = (e) => {
+        const text = e.target.value;
         props.dispatch(updateMessageActionCreator(text));
     }
     const sendMessage = () => {
@@ -40,7 +39,7 @@ export default function Dialogs(props) {
                 </div>
             </div>
             <div className={addMessage}>
-                <textarea ref={textArea} value={props.messagesPage.newMessage} onChange={updateMessage}
+                <textarea value={props.messagesPage.newMessage} onChange={updateMessage}
                           cols="80" rows="5" placeholder="Enter here" />
                 <button onClick={sendMessage} >Send Message</button>
             </div>

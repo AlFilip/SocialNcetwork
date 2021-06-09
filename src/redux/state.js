@@ -52,23 +52,26 @@ const store = {
             this._state.profilePage.newPost = action.newValue;
             this.rerenderEntireTree();
         } else if (type === ADD_POST) {
-            const newPost = {
-                name: "Alexey Filippov",
-                message: this._state.profilePage.newPost,
-                likesCount: 0,
-            };
-            this._state.profilePage.postData.push(newPost);
-            debugger;
-            this._state.profilePage.newPost = "";
-            this.rerenderEntireTree();
-        } else if (type === SEND_MESSAGE) {
-            const newMessageData = {
-                id: this._state.messagesPage.messageData.slice(-1)[0].id + 1,
-                message: this._state.messagesPage.newMessage
+            if (this._state.profilePage.newPost) {
+                const newPost = {
+                    name: "Alexey Filippov",
+                    message: this._state.profilePage.newPost,
+                    likesCount: 0,
+                };
+                this._state.profilePage.postData.push(newPost);
+                this._state.profilePage.newPost = "";
+                this.rerenderEntireTree();
             }
-            this._state.messagesPage.messageData.push(newMessageData);
-            this._state.messagesPage.newMessage = "";
-            this.rerenderEntireTree();
+        } else if (type === SEND_MESSAGE) {
+            if (this._state.messagesPage.newMessage) {
+                const newMessageData = {
+                    id: this._state.messagesPage.messageData.slice(-1)[0].id + 1,
+                    message: this._state.messagesPage.newMessage
+                }
+                this._state.messagesPage.messageData.push(newMessageData);
+                this._state.messagesPage.newMessage = "";
+                this.rerenderEntireTree();
+            }
         } else if (type === UPDATE_NEW_MESSAGE) {
             this._state.messagesPage.newMessage = action.value;
             this.rerenderEntireTree();

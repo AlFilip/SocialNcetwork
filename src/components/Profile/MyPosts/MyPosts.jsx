@@ -8,13 +8,12 @@ export default function MyPosts(props) {
     const postsConverted = props.profilePage.postData
         .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
 
-    const textArea = React.createRef();
     const addPost = () => {
         props.dispatch(addPostActionCreator());
     };
 
-    const onPostChange = () => {
-        const text = textArea.current.value;
+    const onPostChange = (e) => {
+        const text = e.target.value;
         props.dispatch(onPostChangeActionCreator(text));
     }
 
@@ -25,7 +24,7 @@ export default function MyPosts(props) {
                     My Posts
                 </div>
                 <div className={posts_add_form}>
-                    <textarea ref={textArea} value={props.profilePage.newPost} onChange={onPostChange}
+                    <textarea value={props.profilePage.newPost} onChange={onPostChange}
                               cols="100" rows="5" placeholder="Enter here" />
                     <button onClick={addPost}>Add Post</button>
                 </div>
