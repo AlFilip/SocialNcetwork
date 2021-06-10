@@ -1,7 +1,5 @@
-const CHANGE_NEW_POST = "CHANGE-NEW-POST",
-    ADD_POST = "ADD-POST",
-    SEND_MESSAGE = "SEND-MESSAGE",
-    UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
 
 const store = {
     rerenderEntireTree() {
@@ -47,45 +45,14 @@ const store = {
     },
 
     dispatch(action) {
-        const type = action.type;
-        if (type === CHANGE_NEW_POST) {
-            this._state.profilePage.newPost = action.newValue;
-            this.rerenderEntireTree();
-        } else if (type === ADD_POST) {
-            if (this._state.profilePage.newPost) {
-                const newPost = {
-                    name: "Alexey Filippov",
-                    message: this._state.profilePage.newPost,
-                    likesCount: 0,
-                };
-                this._state.profilePage.postData.push(newPost);
-                this._state.profilePage.newPost = "";
-                this.rerenderEntireTree();
-            }
-        } else if (type === SEND_MESSAGE) {
-            if (this._state.messagesPage.newMessage) {
-                const newMessageData = {
-                    id: this._state.messagesPage.messageData.slice(-1)[0].id + 1,
-                    message: this._state.messagesPage.newMessage
-                }
-                this._state.messagesPage.messageData.push(newMessageData);
-                this._state.messagesPage.newMessage = "";
-                this.rerenderEntireTree();
-            }
-        } else if (type === UPDATE_NEW_MESSAGE) {
-            this._state.messagesPage.newMessage = action.value;
-            this.rerenderEntireTree();
-        } else console.log(action);
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this.rerenderEntireTree();
     },
-
     subscribe(observer) {
         this.rerenderEntireTree = observer;
-    },
+    }
 };
 
-export const onPostChangeActionCreator = (value) => ({type: CHANGE_NEW_POST, newValue: value});
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
-export const updateMessageActionCreator = (value) => ({type: UPDATE_NEW_MESSAGE, value: value})
 
 export default store;

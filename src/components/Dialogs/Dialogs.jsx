@@ -9,7 +9,7 @@ import {
 } from "./Dialogs.module.css"
 import DialogItem from "./Dialog/Dialog";
 import MessageItem from "./Message/Message";
-import {sendMessageActionCreator, updateMessageActionCreator} from "../../redux/state";
+import {sendMessageCreator, updateMessageCreator} from "../../redux/dialogs-reducer";
 
 
 export default function Dialogs(props) {
@@ -21,10 +21,10 @@ export default function Dialogs(props) {
 
         const updateMessage = (e) => {
         const text = e.target.value;
-        props.dispatch(updateMessageActionCreator(text));
+        props.dispatch(updateMessageCreator(text));
     }
     const sendMessage = () => {
-        props.dispatch(sendMessageActionCreator());
+        props.dispatch(sendMessageCreator());
     }
 
     return (

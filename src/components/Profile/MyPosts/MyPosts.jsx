@@ -1,7 +1,8 @@
 import React from "react";
+
 import {posts, posts_list, posts_title, posts_add_form} from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/state";
+import {addPostCreator, onPostChangeCreator} from "../../../redux/profile-reducer";
 
 
 export default function MyPosts(props) {
@@ -9,12 +10,12 @@ export default function MyPosts(props) {
         .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
 
     const addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostCreator());
     };
 
     const onPostChange = (e) => {
         const text = e.target.value;
-        props.dispatch(onPostChangeActionCreator(text));
+        props.dispatch(onPostChangeCreator(text));
     }
 
     return (
