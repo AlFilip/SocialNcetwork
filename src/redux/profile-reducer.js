@@ -4,7 +4,15 @@ const CHANGE_NEW_POST = "CHANGE-NEW-POST",
 export const onPostChangeCreator = (value) => ({type: CHANGE_NEW_POST, newValue: value});
 export const addPostCreator = () => ({type: ADD_POST});
 
-const profileReducer = (state, action) => {
+
+const initState = {
+        postData: [
+            {name: "Alexey Filippov", message: "Hello World!", likesCount: 25},
+            {name: "Alexey Filippov", message: "Bla bla bla", likesCount: 20}
+        ],
+        newPost: ""
+};
+const profileReducer = (state = initState, action) => {
     switch (action.type) {
         case CHANGE_NEW_POST:
             state.newPost = action.newValue;

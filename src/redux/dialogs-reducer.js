@@ -5,21 +5,19 @@ export const sendMessageCreator = () => ({type: SEND_MESSAGE});
 export const updateMessageCreator = (value) => ({type: UPDATE_NEW_MESSAGE, value: value});
 
 const initState = {
-    messagesPage: {
-        dialogData: [
-            {id: 1, name: "Alex"},
-            {id: 2, name: "Sergey"},
-            {id: 3, name: "Artem"}
-        ],
-        messageData: [
-            {id: 1, message: "Hi man"},
-            {id: 2, message: "How you doing?"},
-        ],
-        newMessage: "",
-    }
+    dialogData: [
+        {id: 1, name: "Alex"},
+        {id: 2, name: "Sergey"},
+        {id: 3, name: "Artem"}
+    ],
+    messageData: [
+        {id: 1, message: "Hi man"},
+        {id: 2, message: "How you doing?"},
+    ],
+    newMessage: "",
 }
 
-const dialogsReducer = (state=initState, action) => {
+const dialogsReducer = (state = initState, action) => {
     switch (action.type) {
         case SEND_MESSAGE:
             if (state.newMessage) {

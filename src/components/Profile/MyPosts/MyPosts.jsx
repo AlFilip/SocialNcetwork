@@ -6,6 +6,7 @@ import {addPostCreator, onPostChangeCreator} from "../../../redux/profile-reduce
 
 
 export default function MyPosts(props) {
+    debugger;
     const postsConverted = props.profilePage.postData
         .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
 
