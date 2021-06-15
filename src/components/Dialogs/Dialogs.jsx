@@ -9,22 +9,21 @@ import {
 } from "./Dialogs.module.css"
 import DialogItem from "./Dialog/Dialog";
 import MessageItem from "./Message/Message";
-import {sendMessageCreator, updateMessageCreator} from "../../redux/dialogs-reducer";
 
 
 export default function Dialogs(props) {
-    const dialogsConv = props.messagesPage.dialogData
+    const dialogsConv = props.dialogData
         .map(i => <DialogItem id={i.id} name={i.name}/>);
 
-    const messagesConv = props.messagesPage.messageData
+    const messagesConv = props.messageData
         .map(m => <MessageItem message={m.message}/>);
 
-        const updateMessage = (e) => {
+    const updateMessage = (e) => {
         const text = e.target.value;
-        props.dispatch(updateMessageCreator(text));
+        props.updateMessage(text);
     }
     const sendMessage = () => {
-        props.dispatch(sendMessageCreator());
+        props.sendMessage();
     }
 
     return (
@@ -39,9 +38,9 @@ export default function Dialogs(props) {
                 </div>
             </div>
             <div className={addMessage}>
-                <textarea value={props.messagesPage.newMessage} onChange={updateMessage}
-                          cols="80" rows="5" placeholder="Enter here" />
-                <button onClick={sendMessage} >Send Message</button>
+                <textarea value={props.newMessage} onChange={updateMessage}
+                          cols="80" rows="5" placeholder="Enter here"/>
+                <button onClick={sendMessage}>Send Message</button>
             </div>
         </div>
     );
