@@ -29,7 +29,6 @@ export default function App(props) {
                 <Route path={'/news'} render={News}/>
                 <Route path={'/settings'} render={Settings}/>
             </div>
-            <Sidebar sidebar={props.store.getState().sidebar}/>
             <Footer/>
         </BrowserRouter>
     )
