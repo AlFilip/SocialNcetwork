@@ -5,9 +5,8 @@ import Post from "./Post/Post";
 
 
 export default function MyPosts(props) {
-    debugger;
     const postsConverted = props.postData
-        .map(p => <Post name={p.name} message={p.message} likesCount={p.likesCount} />);
+        .map(p => <Post key={p.id} name={p.name} message={p.message} likesCount={p.likesCount} />);
 
     const addPost = () => {
         props.addPost()
@@ -17,7 +16,6 @@ export default function MyPosts(props) {
         const text = e.target.value;
         props.onPostChange(text);
     }
-
     return (
         <>
             <div className={posts}>

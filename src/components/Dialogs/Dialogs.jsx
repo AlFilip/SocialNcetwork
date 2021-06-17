@@ -13,10 +13,10 @@ import MessageItem from "./Message/Message";
 
 export default function Dialogs(props) {
     const dialogsConv = props.dialogData
-        .map(i => <DialogItem id={i.id} name={i.name}/>);
+        .map(i => <DialogItem key={i.id} id={i.id} name={i.name}/>);
 
     const messagesConv = props.messageData
-        .map(m => <MessageItem message={m.message}/>);
+        .map(m => <MessageItem key={m.id} message={m.message}/>);
 
     const updateMessage = (e) => {
         const text = e.target.value;

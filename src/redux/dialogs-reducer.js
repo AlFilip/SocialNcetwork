@@ -2,7 +2,7 @@ const SEND_MESSAGE = "SEND-MESSAGE",
     UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE});
-export const updateMessageCreator = (value) => ({type: UPDATE_NEW_MESSAGE, value: value});
+export const updateMessageCreator = (value) => ({type: UPDATE_NEW_MESSAGE, newValue: value});
 
 const initState = {
     dialogData: [
@@ -18,24 +18,27 @@ const initState = {
 };
 
 const dialogsReducer = (state = initState, action) => {
-    const stateCopy = {...state};
     switch (action.type) {
         case SEND_MESSAGE:
-            if (stateCopy.newMessage) {
-                stateCopy.messageData = [...state.messageData];
+            if (state.newMessage) {
                 const newMessageData = {
-                    id: stateCopy.messageData.slice(-1)[0].id + 1,
-                    message: stateCopy.newMessage
+                    id: state.messageData.slice(-1)[0].id + 1,
+                    message: state.newMessage
                 };
-                stateCopy.messageData.push(newMessageData);
-                stateCopy.newMessage = "";
+                return {
+                    ...state,
+                    messageData: [...state.messageData, newMessageData],
+                    newMessage: ""
+                }
             }
-            return stateCopy;
+            break;
         case UPDATE_NEW_MESSAGE:
-            stateCopy.newMessage = action.value;
-            return stateCopy;
+            return {
+                ...state,
+                newMessage: action.newValue
+            }
         default:
-            return stateCopy;
+            return state;
     }
 }
 

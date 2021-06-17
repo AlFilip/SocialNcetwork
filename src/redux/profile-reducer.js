@@ -6,31 +6,34 @@ export const addPostCreator = () => ({type: ADD_POST});
 
 const initState = {
         postData: [
-            {name: "Alexey Filippov", message: "Hello World!", likesCount: 25},
-            {name: "Alexey Filippov", message: "Bla bla bla", likesCount: 20}
+            {name: "Alexey Filippov", message: "Hello World!", likesCount: 25, id:0},
+            {name: "Alexey Filippov", message: "Bla bla bla", likesCount: 20, id:1}
         ],
-        newPost: ""
+        newPost: "",
 };
 const profileReducer = (state = initState, action) => {
-    const stateCopy = {...state};
     switch (action.type) {
         case CHANGE_NEW_POST:
-            stateCopy.newPost = action.newValue;
-            return stateCopy;
+            return {
+                ...state,
+                newPost: action.newValue,
+            }
         case ADD_POST:
-            if (stateCopy.newPost) {
+            if (state.newPost) {
                 const newPost = {
                     name: "Alexey Filippov",
-                    message: stateCopy.newPost,
+                    message: state.newPost,
                     likesCount: 0,
+                    id: state.postData.slice(-1)[0].id + 1,
                 };
-                stateCopy.postData = [...state.postData];
-                stateCopy.postData.push(newPost);
-                stateCopy.newPost = "";
-            }
-            return stateCopy;
+                return {
+                    ...state,
+                    postData: [...state.postData, newPost],
+                    newPost: ""
+                }
+            } break;
         default:
-            return stateCopy;
+            return state;
     }
 }
 
