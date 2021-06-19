@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import LeftFiller from "./components/Fillers/LeftFiller";
 import RightFiller from "./components/Fillers/RightFiller";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 export default function App(props) {
@@ -28,6 +29,7 @@ export default function App(props) {
                 <Route path={'/music'} render={Music}/>
                 <Route path={'/news'} render={News}/>
                 <Route path={'/settings'} render={Settings}/>
+                <Route path={'/users'} render={() => <UsersContainer /> }/>
             </div>
             <Footer/>
         </BrowserRouter>

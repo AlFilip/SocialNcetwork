@@ -14,6 +14,10 @@ export default function Navbar() {
                 <i className="fi-rr-envelope"/>
             </NavLink>
 
+            <NavLink className={item} to="/users" activeClassName={active}>
+                <i className="fi-rr-users"/>
+            </NavLink>
+
             <NavLink className={item} to="/news" activeClassName={active}>
                 <i className="fi-rr-world"/>
             </NavLink>
