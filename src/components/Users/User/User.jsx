@@ -1,9 +1,11 @@
 import React from "react";
 
+import userImg from"../../../assets/images/user.png"
+
 import {userPhoto, userCard, userCountry, userCity, userName, userStatus} from "./User.module.css";
 
 
-export default function User({isFollower, fullName, status, city, country, userId, toggleFollow}) {
+export default function User({followed, name, status, photos, city, country, userId, toggleFollow}) {
 
     const followToggle = () => {
         toggleFollow(userId);
@@ -12,20 +14,20 @@ export default function User({isFollower, fullName, status, city, country, userI
     return (
         <div className={userCard}>
             <div>
-                <img className={userPhoto} src="https://i.redd.it/dh5otp8kcf741.png" alt=""/>
-                <button onClick={followToggle}>{isFollower ? "Unfollow" : "Follow"}</button>
+                <img className={userPhoto} src={photos.small? photos.small : userImg} alt=""/>
+                <button onClick={followToggle}>{followed ? "Unfollow" : "Follow"}</button>
             </div>
             <div className={userName}>
-                {fullName}
+                {name}
             </div>
             <div className={userStatus}>
                 {status}
             </div>
             <div className={userCity}>
-                {city}
+                {"city"}
             </div>
             <div className={userCountry}>
-                {country}
+                {"country"}
             </div>
         </div>
     )

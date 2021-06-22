@@ -13,8 +13,8 @@ const Friend = ({id, name, src}) => {
 }
 
 export default function Sidebar(props) {
-    const friends = props.sidebar.friendsList
-        .map(friend => <Friend id={friend.id} name={friend.name} src={friend.img} />);
+    const friends = props.friendsList
+        .map(friend => <Friend key={friend.id} id={friend.id} name={friend.name} src={friend.img} />);
     return (
         <div className={sidebar}>
             <h2 className={sidebarHeader}>Friends</h2>

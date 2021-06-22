@@ -8,11 +8,11 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
-import Sidebar from "./components/Sidebar/Sidebar";
 import LeftFiller from "./components/Fillers/LeftFiller";
 import RightFiller from "./components/Fillers/RightFiller";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import SidebarContainer from "./components/Sidebar/SidebarContainer";
 
 
 export default function App(props) {
@@ -31,6 +31,7 @@ export default function App(props) {
                 <Route path={'/settings'} render={Settings}/>
                 <Route path={'/users'} render={() => <UsersContainer /> }/>
             </div>
+            <SidebarContainer />
             <Footer/>
         </BrowserRouter>
     )
