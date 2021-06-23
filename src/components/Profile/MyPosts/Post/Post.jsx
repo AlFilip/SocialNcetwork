@@ -1,13 +1,14 @@
 import React from "react";
 
 import {item, senderInfo, senderName, likesCounter} from "./Post.module.css";
+import img from "../../../../assets/images/user2.png";
 
 
-export default function Post({name, message, likesCount}) {
+export default function Post({name, message, likesCount, imgSrc}) {
     return (
         <div className={item} >
             <div className={senderInfo}>
-                <img src="https://i.redd.it/dh5otp8kcf741.png" alt="Фото"/>
+                <img src={imgSrc? imgSrc : img} alt="Фото"/>
                 <div className={senderName}>
                     {name}
                 </div>
