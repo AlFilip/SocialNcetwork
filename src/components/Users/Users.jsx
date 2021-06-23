@@ -5,23 +5,25 @@ import User from "./User/User";
 import axios from "axios";
 
 
-export default function Users(props) {
-    if (props.usersList.length === 0) {
+export default class Users extends React.Component {
 
+    constructor(props) {
+        super(props);
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
-            .then(response => {
-                props.setUsers(response.data.items)
-            })
+            .then(response => this.props.setUsers(response.data.items));
     }
-    debugger;
-    const users = props.usersList.map(u => <User key={u.id} userId={u.id} name={u.name} status={u.status}
-                                                 followed={u.followed} photos={u.photos}
-                                                 toggleFollow={props.toggleFollow} setUsers={props.setUsers}/>);
-    return (
-        <div className={usersPage}>
-            <div className={usersList}>
-                {users}
+
+    render() {
+        const users = this.props.usersList.map(u => <User key={u.id} userId={u.id} name={u.name} status={u.status}
+                                                          followed={u.followed} photos={u.photos}
+                                                          toggleFollow={this.props.toggleFollow}
+                                                          setUsers={this.props.setUsers}/>);
+        return (
+            <div className={usersPage}>
+                <div className={usersList}>
+                    {users}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 };
