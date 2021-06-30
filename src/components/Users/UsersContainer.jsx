@@ -1,5 +1,10 @@
 import {} from "./Users.module.css"
-import {setCurrentPageAC, setUsersAC, toggleFollowAC,} from "../../redux/users-reducer";
+import {
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    toggleFollowAC,
+} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import Users from "./Users";
 
@@ -21,8 +26,11 @@ const mapDispatchToProps = (dispatch) => {
         setUsers: (users) => {
             dispatch(setUsersAC(users))
         },
-        setCurrentPage: (curentPage) => {
-            dispatch(setCurrentPageAC(curentPage))
+        setCurrentPage: (currentPage) => {
+            dispatch(setCurrentPageAC(currentPage))
+        },
+        setTotalUsersCount: (totalUsersCount) => {
+            dispatch(setTotalUsersCountAC(totalUsersCount))
         }
     }
 }

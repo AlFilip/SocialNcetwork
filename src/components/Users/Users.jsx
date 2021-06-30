@@ -1,15 +1,19 @@
 import React from "react";
 
-import {usersPage, usersList} from "./Users.module.css";
+import s from "./Users.module.css";
 import User from "./User/User";
 import axios from "axios";
 
 
 export default class Users extends React.Component {
 
-    getUsers = () => {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users?count=3&page=1")
-            .then(response => this.props.setUsers(response.data.items));
+    getUsers = (pageNumber=1) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                debugger;
+                this.props.setTotalUsersCount(response.data.totalCount);
+            });
     }
 
     componentDidMount() {
@@ -22,21 +26,29 @@ export default class Users extends React.Component {
                                                           toggleFollow={this.props.toggleFollow}
                                                           setUsers={this.props.setUsers}/>);
 
-
         const totalPagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
 
-        const pagesList = (totalPagesCount) => {
-            let pagesList=[];
-            for (let page = 1; page++; page <= totalPagesCount) {
-                pagesList.push(page);
-            }
-            return pagesList;
+        let pages = [];
+        for (let page = 1; page <= totalPagesCount; page++) {
+            pages.push(page);
         }
 
+        const changePage = (pageNumber) => {
+            this.props.setCurrentPage(pageNumber);
+            this.getUsers(pageNumber);
+        }
+
+        const pagesNav = pages.map(page =>
+            <span className={page === this.props.currentPage && s.currentPage}
+                  onClick={() => changePage(page)}>{page}</span>
+        )
 
         return (
-            <div className={usersPage}>
-                <div className={usersList}>
+            <div className={s.usersPage}>
+                <div>
+                    {pagesNav}
+                </div>
+                <div className={s.usersList}>
                     {users}
                 </div>
             </div>

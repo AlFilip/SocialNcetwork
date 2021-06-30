@@ -1,5 +1,9 @@
 .usersPage{}
 
+.currentPage {
+    font-weight: bold;
+}
+
 .usersList {}
 
 .userCard {}
