@@ -1,6 +1,6 @@
-import {addPostCreator, onPostChangeCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {addPost, onPostChange} from "../../../redux/profile-reducer";
 
 
 const mapStateToProps = (state) => {
@@ -9,17 +9,7 @@ const mapStateToProps = (state) => {
         postData: state.profilePage.postData
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onPostChange:(text) => {
-            dispatch(onPostChangeCreator(text));
-        },
-        addPost: () => {
-            dispatch(addPostCreator());
-        }
-    }
-}
 
-const MyPostContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts);
+const MyPostContainer = connect(mapStateToProps, {onPostChange, addPost})(MyPosts);
 
 export default MyPostContainer;

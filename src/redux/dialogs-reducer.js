@@ -1,8 +1,8 @@
 const SEND_MESSAGE = "SEND-MESSAGE",
     UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE});
-export const updateMessageCreator = (value) => ({type: UPDATE_NEW_MESSAGE, newValue: value});
+export const sendMessage = () => ({type: SEND_MESSAGE});
+export const updateMessage = (value) => ({type: UPDATE_NEW_MESSAGE, newValue: value});
 
 const initState = {
     dialogData: [

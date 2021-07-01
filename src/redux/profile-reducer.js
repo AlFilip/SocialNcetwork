@@ -1,8 +1,8 @@
 const CHANGE_NEW_POST = "CHANGE-NEW-POST",
     ADD_POST = "ADD-POST";
 
-export const onPostChangeCreator = (value) => ({type: CHANGE_NEW_POST, newValue: value});
-export const addPostCreator = () => ({type: ADD_POST});
+export const onPostChange = (value) => ({type: CHANGE_NEW_POST, newValue: value});
+export const addPost = () => ({type: ADD_POST});
 
 const initState = {
         postData: [
