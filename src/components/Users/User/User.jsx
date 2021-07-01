@@ -1,8 +1,8 @@
 import React from "react";
 
-import userImg from"../../../assets/images/user.png"
+import userImg from "../../../assets/images/user.png"
 
-import {userPhoto, userCard, userCountry, userCity, userName, userStatus} from "./User.module.css";
+import {userCard, userCity, userCountry, userName, userPhoto, userStatus} from "./User.module.css";
 
 
 export default function User({followed, name, status, photos, city, country, userId, toggleFollow}) {
@@ -14,7 +14,7 @@ export default function User({followed, name, status, photos, city, country, use
     return (
         <div className={userCard}>
             <div>
-                <img className={userPhoto} src={photos.small? photos.small : userImg} alt=""/>
+                <img className={userPhoto} src={photos.small ? photos.small : userImg} alt=""/>
                 <button onClick={followToggle}>{followed ? "Unfollow" : "Follow"}</button>
             </div>
             <div className={userName}>
@@ -25,9 +25,11 @@ export default function User({followed, name, status, photos, city, country, use
             </div>
             <div className={userCity}>
                 {"city"}
+                {city}
             </div>
             <div className={userCountry}>
                 {"country"}
+                {country}
             </div>
         </div>
     )

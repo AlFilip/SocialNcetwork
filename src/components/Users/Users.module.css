@@ -1,4 +1,8 @@
-.usersPage{}
+.usersPage{
+    max-width: 1000px;
+}
+
+.pageNav {}
 
 .currentPage {
     font-weight: bold;

@@ -3,18 +3,16 @@ const TOGGLE_FOLLOW = "TOGGLE_FOLLOW",
     SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
     SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
-
 export const setUsersAC = (users) => ({type: SET_USERS, userList: users});
 export const toggleFollowAC = (userId) => ({type: TOGGLE_FOLLOW, id:userId});
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 
-
 const initState = {
     usersList: [],
     pageSize: 3,
     currentPage: 1,
-    totalUsersCount: 10,
+    totalUsersCount: 0,
 };
 
 const usersReducer = (state = initState, action) => {
