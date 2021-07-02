@@ -1,15 +1,18 @@
 const CHANGE_NEW_POST = "CHANGE-NEW-POST",
+    GET_PROFILE = "GET_PROFILE",
     ADD_POST = "ADD-POST";
 
 export const onPostChange = (value) => ({type: CHANGE_NEW_POST, newValue: value});
 export const addPost = () => ({type: ADD_POST});
+export const setProfile = (profile) => ({type: GET_PROFILE, profile});
 
 const initState = {
-        postData: [
-            {name: "Alexey Filippov", message: "Hello World!", likesCount: 25, id:0},
-            {name: "Alexey Filippov", message: "Bla bla bla", likesCount: 20, id:1}
-        ],
-        newPost: "",
+    postData: [
+        {name: "Alexey Filippov", message: "Hello World!", likesCount: 25, id: 0},
+        {name: "Alexey Filippov", message: "Bla bla bla", likesCount: 20, id: 1}
+    ],
+    newPost: "",
+    profile: null,
 };
 const profileReducer = (state = initState, action) => {
     switch (action.type) {
@@ -17,6 +20,11 @@ const profileReducer = (state = initState, action) => {
             return {
                 ...state,
                 newPost: action.newValue,
+            }
+        case GET_PROFILE:
+            return {
+                ...state,
+                profile: action.profile,
             }
         case ADD_POST:
             if (state.newPost) {
@@ -31,7 +39,8 @@ const profileReducer = (state = initState, action) => {
                     postData: [...state.postData, newPost],
                     newPost: ""
                 }
-            } break;
+            }
+            break;
         default:
             return state;
     }

@@ -1,8 +1,9 @@
+import React from "react";
+
 import './App.css';
 import './icons/css/uicons-regular-rounded.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -13,9 +14,10 @@ import RightFiller from "./components/Fillers/RightFiller";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
-export default function App(props) {
+export default function App() {
     return (
         <BrowserRouter>
             <Header/>
@@ -25,7 +27,7 @@ export default function App(props) {
             <div className="app-wrapper-content">
                 <Route exact path={'/dialogs'}
                        render={() => <DialogsContainer />} />
-                <Route path={'/profile'} render={() => <Profile /> }/>
+                <Route path={'/profile'} render={() => <ProfileContainer /> }/>
                 <Route path={'/music'} render={Music}/>
                 <Route path={'/news'} render={News}/>
                 <Route path={'/settings'} render={Settings}/>

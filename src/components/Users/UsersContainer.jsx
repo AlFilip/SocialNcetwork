@@ -23,7 +23,8 @@ class UsersContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.getUsers();
+        debugger;
+        this.getUsers(this.props.currentPage);
     }
 
     render() {

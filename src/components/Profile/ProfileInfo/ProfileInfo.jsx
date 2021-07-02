@@ -5,9 +5,10 @@ import img from "../../../assets/images/user2.png"
 
 
 export default function ProfileInfo (props) {
+    debugger;
     return (
         <div className={profile_info}>
-            <img src={props.imgSrc? props.imgSrc : img} alt="" />
+            <img src={props.profile ? props.profile.photos.large : img} alt="" />
             <div>Profile Text</div>
         </div>
     );
