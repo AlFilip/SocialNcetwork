@@ -5,7 +5,6 @@ import img from "../../../assets/images/user2.png"
 
 
 export default function ProfileInfo (props) {
-    debugger;
     return (
         <div className={s.profile_info}>
             <img src={props.profile && props.profile.photos.large ? props.profile.photos.large : img} alt="" />

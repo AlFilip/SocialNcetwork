@@ -1,12 +1,13 @@
 import React from "react";
 
-import {header} from "./Header.module.css";
+import s from "./Header.module.css";
 
-export default function Header() {
+export default function Header(props) {
+    debugger;
     return (
-        <header className={header}>
+        <header className={s.header}>
             <img src="https://png.pngtree.com/element_our/png/20180912/coffee-time-png_91570.jpg" alt="" />
-            <div>Header Text</div>
+            <div>{props.login}</div>
         </header>
     )
 }
