@@ -16,7 +16,7 @@ export default function Users (props) {
         pages.push(page);
     }
     const pagesNav = pages.map(page =>
-        <span className={page === props.currentPage && s.currentPage}
+        <span key={+page} className={page === props.currentPage? s.currentPage : ""}
               onClick={() => props.changePage(page)}>{page}</span>
     )
 

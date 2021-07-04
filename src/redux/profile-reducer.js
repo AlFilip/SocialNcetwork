@@ -40,7 +40,7 @@ const profileReducer = (state = initState, action) => {
                     newPost: ""
                 }
             }
-            break;
+            return state;
         default:
             return state;
     }

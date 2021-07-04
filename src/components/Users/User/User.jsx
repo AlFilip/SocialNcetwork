@@ -1,8 +1,9 @@
 import React from "react";
 
+import {NavLink} from "react-router-dom";
 import userImg from "../../../assets/images/user.png"
 
-import {userCard, userCity, userCountry, userName, userPhoto, userStatus} from "./User.module.css";
+import s from "./User.module.css";
 
 
 export default function User({followed, name, status, photos, city, country, userId, toggleFollow}) {
@@ -12,22 +13,24 @@ export default function User({followed, name, status, photos, city, country, use
     }
 
     return (
-        <div className={userCard}>
+        <div className={s.userCard}>
             <div>
-                <img className={userPhoto} src={photos.small ? photos.small : userImg} alt=""/>
+                <NavLink to={`/profile/${userId}`}>
+                    <img className={s.userPhoto} src={photos.small ? photos.small : userImg} alt=""/>
+                </NavLink>
                 <button onClick={followToggle}>{followed ? "Unfollow" : "Follow"}</button>
             </div>
-            <div className={userName}>
+            <div className={s.userName}>
                 {name}
             </div>
-            <div className={userStatus}>
-                {status}
+            <div className={s.userStatus}>
+                {status && `Status: ${status}`}
             </div>
-            <div className={userCity}>
+            <div className={s.userCity}>
                 {"city"}
                 {city}
             </div>
-            <div className={userCountry}>
+            <div className={s.userCountry}>
                 {"country"}
                 {country}
             </div>

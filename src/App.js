@@ -14,7 +14,7 @@ import RightFiller from "./components/Fillers/RightFiller";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import ProfileContainerWithUrlRoute from "./components/Profile/ProfileContainer";
 
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
             <div className="app-wrapper-content">
                 <Route exact path={'/dialogs'}
                        render={() => <DialogsContainer />} />
-                <Route path={'/profile'} render={() => <ProfileContainer /> }/>
+                <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithUrlRoute /> }/>
                 <Route path={'/music'} render={Music}/>
                 <Route path={'/news'} render={News}/>
                 <Route path={'/settings'} render={Settings}/>
