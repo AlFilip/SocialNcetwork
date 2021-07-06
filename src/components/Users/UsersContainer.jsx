@@ -1,22 +1,19 @@
 import {connect} from "react-redux";
 import React from "react";
-import axios from "axios";
 import Users from "./Users";
 import Loader from "../../assets/loader/Loader";
 import {setCurrentPage, setTotalUsersCount, setUsers, toggleFollow, toggleIsFetching} from "../../redux/users-reducer";
+import {UsersAPI} from "../api/api";
 
 
 class UsersContainer extends React.Component {
     getUsers = (pageNumber = 1) => {
         this.props.toggleIsFetching();
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`,
-            {
-                withCredentials: true,
-            })
-            .then(response => {
+        UsersAPI.getUsers(this.props.pageSize, pageNumber)
+            .then(data => {
                 this.props.toggleIsFetching();
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             });
     }
 

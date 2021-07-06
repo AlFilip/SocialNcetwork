@@ -37,6 +37,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const ProfileContainerWithUrlRoute = withRouter(ProfileContainer);
+const ProfileContainerWithUrlRouter = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {onPostChange, addPost, setProfile})(ProfileContainerWithUrlRoute);
+export default connect(mapStateToProps, {onPostChange, addPost, setProfile})(ProfileContainerWithUrlRouter);
