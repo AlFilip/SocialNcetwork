@@ -8,7 +8,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 export default function Profile(props) {
     return (
         <div className={profile}>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} userAuthData={props.userAuthData}/>
             <MyPostsContainer />
         </div>
     );

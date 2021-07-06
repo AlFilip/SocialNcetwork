@@ -4,8 +4,8 @@ const TOGGLE_FOLLOW = "TOGGLE_FOLLOW",
     SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
     SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
-export const setUsers = (users) => ({type: SET_USERS, userList: users});
-export const toggleFollow = (userId) => ({type: TOGGLE_FOLLOW, id: userId});
+export const setUsers = (userList) => ({type: SET_USERS, userList});
+export const toggleFollow = (id, followed) => ({type: TOGGLE_FOLLOW, id, followed});
 export const toggleIsFetching = () => ({type: TOGGLE_IS_FETCHING});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
@@ -23,7 +23,7 @@ const usersReducer = (state = initState, action) => {
         case TOGGLE_FOLLOW:
             return {
                 ...state,
-                usersList: state.usersList.map(u => u.id === action.id ? {...u, followed: !u.followed} : u),
+                usersList: state.usersList.map(u => u.id === action.id ? {...u, followed: action.followed} : u),
             };
         case TOGGLE_IS_FETCHING:
             return {

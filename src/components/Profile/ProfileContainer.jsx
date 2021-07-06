@@ -9,7 +9,8 @@ import {withRouter} from "react-router-dom";
 class ProfileContainer extends React.Component {
     getProfile() {
         let userId = +this.props.match.params.userId;
-        if (!userId) userId = 2;
+        if (!userId) userId = this.props.userAuthData.id;
+        debugger;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 this.props.setProfile(response.data);
@@ -32,6 +33,7 @@ const mapStateToProps = (state) => {
         postData: state.profilePage.postData,
         newPost: state.profilePage.newPost,
         profile: state.profilePage.profile,
+        userAuthData: state.userAuthData,
     }
 }
 

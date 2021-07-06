@@ -2,10 +2,10 @@ import React from "react";
 import s from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
+
 export default function Navbar() {
     return (
         <div className={s.navbar}>
-
             <NavLink className={s.item} to="/profile" activeClassName={s.active}>
                 <i className="fi-rr-user"/>
             </NavLink>

@@ -9,7 +9,10 @@ import {setCurrentPage, setTotalUsersCount, setUsers, toggleFollow, toggleIsFetc
 class UsersContainer extends React.Component {
     getUsers = (pageNumber = 1) => {
         this.props.toggleIsFetching();
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`,
+            {
+                withCredentials: true,
+            })
             .then(response => {
                 this.props.toggleIsFetching();
                 this.props.setUsers(response.data.items);
@@ -23,7 +26,6 @@ class UsersContainer extends React.Component {
     }
 
     componentDidMount() {
-        debugger;
         this.getUsers(this.props.currentPage);
     }
 
