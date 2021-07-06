@@ -3,13 +3,13 @@ import React from "react";
 import Users from "./Users";
 import Loader from "../../assets/loader/Loader";
 import {setCurrentPage, setTotalUsersCount, setUsers, toggleFollow, toggleIsFetching} from "../../redux/users-reducer";
-import {UsersAPI} from "../api/api";
+import {usersAPI} from "../api/api";
 
 
 class UsersContainer extends React.Component {
     getUsers = (pageNumber = 1) => {
         this.props.toggleIsFetching();
-        UsersAPI.getUsers(this.props.pageSize, pageNumber)
+        usersAPI.getUsers(this.props.pageSize, pageNumber)
             .then(data => {
                 this.props.toggleIsFetching();
                 this.props.setUsers(data.items);

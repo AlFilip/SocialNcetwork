@@ -1,10 +1,10 @@
 const CHANGE_NEW_POST = "CHANGE-NEW-POST",
-    GET_PROFILE = "GET_PROFILE",
+    SET_PROFILE = "SET_PROFILE",
     ADD_POST = "ADD-POST";
 
 export const onPostChange = (value) => ({type: CHANGE_NEW_POST, newValue: value});
 export const addPost = () => ({type: ADD_POST});
-export const setProfile = (profile) => ({type: GET_PROFILE, profile});
+export const setProfile = (profile) => ({type: SET_PROFILE, profile});
 
 const initState = {
     postData: [
@@ -21,7 +21,7 @@ const profileReducer = (state = initState, action) => {
                 ...state,
                 newPost: action.newValue,
             }
-        case GET_PROFILE:
+        case SET_PROFILE:
             return {
                 ...state,
                 profile: action.profile,

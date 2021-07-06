@@ -1,7 +1,7 @@
 import React from "react";
 
 import {NavLink} from "react-router-dom";
-import {UsersAPI} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 import userImg from "../../../assets/images/user.png"
 import s from "./User.module.css";
@@ -9,8 +9,8 @@ import s from "./User.module.css";
 
 export default function User({followed, name, status, photos, city, country, userId, toggleFollow}) {
     const followToggle = (isFollow) => {
-        UsersAPI.followToggle(isFollow, userId).then(response => {
-            if (response.status === 200 && response.data.resultCode === 0) {
+        usersAPI.followToggle(isFollow, userId).then(resultCode => {
+            if (resultCode === 0) {
                 toggleFollow(userId, isFollow);
             }
         });

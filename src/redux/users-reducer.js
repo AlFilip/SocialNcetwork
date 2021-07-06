@@ -21,6 +21,7 @@ const initState = {
 const usersReducer = (state = initState, action) => {
     switch (action.type) {
         case TOGGLE_FOLLOW:
+            debugger;
             return {
                 ...state,
                 usersList: state.usersList.map(u => u.id === action.id ? {...u, followed: action.followed} : u),
