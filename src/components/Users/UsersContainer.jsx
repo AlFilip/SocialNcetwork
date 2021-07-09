@@ -14,11 +14,12 @@ class UsersContainer extends React.Component {
         return (
             <>
                 {this.props.isFetching && <Loader/>}
-                <Users usersList={this.props.usersList} toggleFollow={this.props.toggleFollow}
+                <Users usersList={this.props.usersList}
                        totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                        toggleFollowInProgress={this.props.toggleFollowInProgress}
-                       usersToggleFollowInProgress={this.props.usersToggleFollowInProgress} changePage={this.props.changePage}/>
+                       usersToggleFollowInProgress={this.props.usersToggleFollowInProgress}
+                       toggleFollow={this.props.toggleFollow} changePage={this.props.changePage}/>
             </>
         )
     }

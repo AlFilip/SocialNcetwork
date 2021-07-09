@@ -1,6 +1,6 @@
 import React from "react";
 
-import {posts, posts_list, posts_title, posts_add_form} from "./MyPosts.module.css";
+import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 
@@ -18,17 +18,17 @@ export default function MyPosts(props) {
     }
     return (
         <>
-            <div className={posts}>
-                <div className={posts_title}>
+            <div className={s.posts}>
+                <div className={s.posts_title}>
                     My Posts
                 </div>
-                <div className={posts_add_form}>
+                <div className={s.posts_add_form}>
                     <textarea value={props.newPost} onChange={onPostChange}
                               cols="100" rows="5" placeholder="Enter here" />
                     <button onClick={addPost}>Add Post</button>
                 </div>
             </div>
-            <div className={posts_list}>
+            <div className={s.posts_list}>
                 {postsConverted}
             </div>
         </>

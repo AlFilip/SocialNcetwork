@@ -1,10 +1,19 @@
-const CHANGE_NEW_POST = "CHANGE-NEW-POST",
-    SET_PROFILE = "SET_PROFILE",
-    ADD_POST = "ADD-POST";
+import {profileAPI} from "../components/api/api";
+
+const CHANGE_NEW_POST = "CHANGE-NEW-POST";
+const SET_PROFILE = "SET_PROFILE";
+const ADD_POST = "ADD-POST";
 
 export const onPostChange = (value) => ({type: CHANGE_NEW_POST, newValue: value});
 export const addPost = () => ({type: ADD_POST});
 export const setProfile = (profile) => ({type: SET_PROFILE, profile});
+
+export const getProfile = (userId) => (dispatch) => {
+    profileAPI.getProfile(userId)
+        .then(data => {
+            dispatch(setProfile(data));
+        })
+};
 
 const initState = {
     postData: [

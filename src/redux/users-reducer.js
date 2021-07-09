@@ -8,7 +8,7 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_FOLLOW_IN_PROGRESS = "TOGGLE_FOLLOW_IN_PROGRESS";
 
 export const setUsers = (userList) => ({type: SET_USERS, userList});
-export const toggleFollow = (id, followed) => ({type: TOGGLE_FOLLOW, id, followed});
+export const toggleFollowSuccess = (id, followed) => ({type: TOGGLE_FOLLOW, id, followed});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
@@ -29,9 +29,20 @@ export const changePage = (pageSize, pageNumber) => (dispatch) => {
     dispatch(getUsers(pageSize, pageNumber));
 }
 
+export const toggleFollow = (userId, isFollow) => (dispatch) =>{
+    dispatch(toggleFollowInProgress(userId));
+    usersAPI.followToggle(isFollow, userId).then(resultCode => {
+        if (resultCode === 0) {
+            dispatch(toggleFollowSuccess(userId, isFollow));
+        }
+    }).finally(() => {
+        dispatch(toggleFollowInProgress(userId))
+    });
+}
+
 const initState = {
     usersList: [],
-    pageSize: 3,
+    pageSize: 5,
     currentPage: 1,
     totalUsersCount: 0,
     isFetching: false,
