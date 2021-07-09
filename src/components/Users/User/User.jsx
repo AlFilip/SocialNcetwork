@@ -7,12 +7,18 @@ import userImg from "../../../assets/images/user.png"
 import s from "./User.module.css";
 
 
-export default function User({followed, name, status, photos, city, country, userId, toggleFollow}) {
+export default function User({
+                                 followed, name, status, photos, city, country, userId, toggleFollow,
+                                 toggleFollowInProgress, usersToggleFollowInProgress
+                             }) {
     const followToggle = (isFollow) => {
+        toggleFollowInProgress(userId);
         usersAPI.followToggle(isFollow, userId).then(resultCode => {
             if (resultCode === 0) {
                 toggleFollow(userId, isFollow);
             }
+        }).finally(() => {
+            toggleFollowInProgress(userId)
         });
     };
     return (
@@ -21,7 +27,8 @@ export default function User({followed, name, status, photos, city, country, use
                 <NavLink to={`/profile/${userId}`}>
                     <img className={s.userPhoto} src={photos.small ? photos.small : userImg} alt=""/>
                 </NavLink>
-                <button onClick={() => followToggle(!followed)}>{followed ? "Unfollow" : "Follow"}</button>
+                <button disabled={usersToggleFollowInProgress.some(u => u === userId)}
+                        onClick={() => followToggle(!followed)}>{followed ? "Unfollow" : "Follow"}</button>
             </div>
             <div className={s.userName}>
                 {name}

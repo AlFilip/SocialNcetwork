@@ -4,11 +4,13 @@ import s from "./Users.module.css";
 import User from "./User/User";
 
 
-export default function Users (props) {
+export default function Users(props) {
     const users = props.usersList.map(u => <User key={u.id} userId={u.id} name={u.name} status={u.status}
-                                                      followed={u.followed} photos={u.photos}
-                                                      toggleFollow={props.toggleFollow}
-                                                      setUsers={props.setUsers}/>);
+                                                 followed={u.followed} photos={u.photos}
+                                                 toggleFollow={props.toggleFollow}
+                                                 toggleFollowInProgress={props.toggleFollowInProgress}
+                                                 setUsers={props.setUsers}
+                                                 usersToggleFollowInProgress={props.usersToggleFollowInProgress}/>);
 
     const totalPagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
@@ -16,11 +18,11 @@ export default function Users (props) {
         pages.push(page);
     }
     const pagesNav = pages.map(page =>
-        <span key={+page} className={page === props.currentPage? s.currentPage : ""}
+        <span key={+page} className={page === props.currentPage ? s.currentPage : ""}
               onClick={() => props.changePage(page)}>{page}</span>
     )
 
-    return(
+    return (
         <div className={s.usersPage}>
             <div className={s.pageNav}>
                 {pagesNav}

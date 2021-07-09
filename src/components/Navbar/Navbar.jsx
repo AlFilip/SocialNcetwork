@@ -29,7 +29,6 @@ export default function Navbar() {
             <NavLink className={s.item} to="/settings" activeClassName={s.active}>
                 <i className="fi-rr-settings-sliders"/>
             </NavLink>
-
         </div>
     )
 }

@@ -3,12 +3,14 @@ const TOGGLE_FOLLOW = "TOGGLE_FOLLOW",
     SET_USERS = "SET_USERS",
     SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
     SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const TOGGLE_FOLLOW_IN_PROGRESS = "TOGGLE_FOLLOW_IN_PROGRESS";
 
 export const setUsers = (userList) => ({type: SET_USERS, userList});
 export const toggleFollow = (id, followed) => ({type: TOGGLE_FOLLOW, id, followed});
 export const toggleIsFetching = () => ({type: TOGGLE_IS_FETCHING});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const toggleFollowInProgress = (userId) => ({type: TOGGLE_FOLLOW_IN_PROGRESS, userId});
 
 const initState = {
     usersList: [],
@@ -16,15 +18,24 @@ const initState = {
     currentPage: 1,
     totalUsersCount: 0,
     isFetching: false,
+    usersToggleFollowInProgress: [],
 };
 
 const usersReducer = (state = initState, action) => {
     switch (action.type) {
         case TOGGLE_FOLLOW:
-            debugger;
             return {
                 ...state,
                 usersList: state.usersList.map(u => u.id === action.id ? {...u, followed: action.followed} : u),
+            };
+        case TOGGLE_FOLLOW_IN_PROGRESS:
+            let newValue = [...state.usersToggleFollowInProgress];
+            state.usersToggleFollowInProgress.some(id => id === action.userId) ?
+                newValue = newValue.filter(user => user !== action.userId)
+                : newValue.push(action.userId);
+            return {
+                ...state,
+                usersToggleFollowInProgress: newValue,
             };
         case TOGGLE_IS_FETCHING:
             return {

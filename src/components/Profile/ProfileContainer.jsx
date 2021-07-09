@@ -9,8 +9,7 @@ import {profileAPI} from "../api/api";
 class ProfileContainer extends React.Component {
     getProfile() {
         let userId = +this.props.match.params.userId;
-        if (!userId) userId = this.props.userAuthData.id;
-        debugger;
+        !userId && this.props.userAuthData.id ? userId = this.props.userAuthData.id : userId = 2;
         profileAPI.getProfile(userId)
             .then(data => {
                 this.props.setProfile(data);
