@@ -9,7 +9,7 @@ import s from "./User.module.css";
 
 export default function User({
                                  followed, name, status, photos, city, country, userId, toggleFollow,
-                                 toggleFollowInProgress, usersToggleFollowInProgress
+                                 toggleFollowInProgress, usersToggleFollowInProgress,
                              }) {
     const followToggle = (isFollow) => {
         toggleFollowInProgress(userId);

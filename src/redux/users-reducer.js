@@ -1,16 +1,33 @@
-const TOGGLE_FOLLOW = "TOGGLE_FOLLOW",
-    TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING",
-    SET_USERS = "SET_USERS",
-    SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
-    SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+import {usersAPI} from "../components/api/api";
+
+const TOGGLE_FOLLOW = "TOGGLE_FOLLOW";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_FOLLOW_IN_PROGRESS = "TOGGLE_FOLLOW_IN_PROGRESS";
 
 export const setUsers = (userList) => ({type: SET_USERS, userList});
 export const toggleFollow = (id, followed) => ({type: TOGGLE_FOLLOW, id, followed});
-export const toggleIsFetching = () => ({type: TOGGLE_IS_FETCHING});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 export const toggleFollowInProgress = (userId) => ({type: TOGGLE_FOLLOW_IN_PROGRESS, userId});
+
+export const getUsers = (pageSize, pageNumber=1) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(pageSize, pageNumber)
+        .then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        });
+}
+
+export const changePage = (pageSize, pageNumber) => (dispatch) => {
+    dispatch(setCurrentPage(pageNumber));
+    dispatch(getUsers(pageSize, pageNumber));
+}
 
 const initState = {
     usersList: [],
@@ -40,7 +57,7 @@ const usersReducer = (state = initState, action) => {
         case TOGGLE_IS_FETCHING:
             return {
                 ...state,
-                isFetching: !state.isFetching,
+                isFetching: action.isFetching,
             };
         case SET_USERS:
             return {...state, usersList: [...action.userList]};

@@ -9,9 +9,7 @@ export default function Users(props) {
                                                  followed={u.followed} photos={u.photos}
                                                  toggleFollow={props.toggleFollow}
                                                  toggleFollowInProgress={props.toggleFollowInProgress}
-                                                 setUsers={props.setUsers}
                                                  usersToggleFollowInProgress={props.usersToggleFollowInProgress}/>);
-
     const totalPagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let page = 1; page <= totalPagesCount; page++) {
@@ -19,7 +17,7 @@ export default function Users(props) {
     }
     const pagesNav = pages.map(page =>
         <span key={+page} className={page === props.currentPage ? s.currentPage : ""}
-              onClick={() => props.changePage(page)}>{page}</span>
+              onClick={() => props.changePage(props.pageSize, page)}>{page}</span>
     )
 
     return (
