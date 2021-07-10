@@ -7,9 +7,6 @@ import s from "./User.module.css";
 
 
 export default function User(props) {
-    const toggleFollow = (isFollow) => {
-        props.toggleFollow(props.userId, isFollow);
-    };
     return (
         <div className={s.userCard}>
             <div>
@@ -17,7 +14,7 @@ export default function User(props) {
                     <img className={s.userPhoto} src={props.photos.small ? props.photos.small : userImg} alt=""/>
                 </NavLink>
                 <button disabled={props.usersToggleFollowInProgress.some(u => u === props.userId)}
-                        onClick={() => toggleFollow(!props.followed)}>{props.followed ? "Unfollow" : "Follow"}</button>
+                        onClick={() => props.toggleFollow(props.userId, !props.followed)}>{props.followed ? "Unfollow" : "Follow"}</button>
             </div>
             <div className={s.userName}>
                 {props.name}
