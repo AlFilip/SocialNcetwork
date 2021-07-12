@@ -3,6 +3,7 @@ import React from "react";
 import Users from "./Users";
 import Loader from "../../assets/loader/Loader";
 import {changePage, getUsers, toggleFollow, toggleFollowInProgress, toggleIsFetching} from "../../redux/users-reducer";
+import RedirectWrapper from "../HOC/AuthRedirect";
 
 
 class UsersContainer extends React.Component {
@@ -36,6 +37,8 @@ const mapStateToProps = (state) => {
     }
 }
 
+const WithRedirectUsersContainer = RedirectWrapper(UsersContainer);
+
 export default connect(mapStateToProps, {
     toggleFollow, toggleIsFetching, toggleFollowInProgress, getUsers, changePage
-})(UsersContainer);
+})(WithRedirectUsersContainer);
