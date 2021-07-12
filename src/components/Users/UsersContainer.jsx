@@ -4,6 +4,7 @@ import Users from "./Users";
 import Loader from "../../assets/loader/Loader";
 import {changePage, getUsers, toggleFollow, toggleFollowInProgress, toggleIsFetching} from "../../redux/users-reducer";
 import RedirectWrapper from "../HOC/AuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -35,10 +36,11 @@ const mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
         usersToggleFollowInProgress: state.usersPage.usersToggleFollowInProgress,
     }
-}
+};
 
-const WithRedirectUsersContainer = RedirectWrapper(UsersContainer);
-
-export default connect(mapStateToProps, {
-    toggleFollow, toggleIsFetching, toggleFollowInProgress, getUsers, changePage
-})(WithRedirectUsersContainer);
+export default compose(
+    connect(mapStateToProps, {
+        toggleFollow, toggleIsFetching, toggleFollowInProgress, getUsers, changePage
+    }),
+    RedirectWrapper,
+)(UsersContainer);
