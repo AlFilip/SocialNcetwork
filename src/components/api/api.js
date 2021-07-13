@@ -33,6 +33,9 @@ export const usersAPI = {
 export const profileAPI = {
     getProfile(userId) {
         return request.get(`profile/${userId}`).then(response => response.data);
+    },
+    getStatus(userId) {
+        return request.get(`/profile/status/${userId}`)
     }
 };
 
