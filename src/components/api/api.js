@@ -18,11 +18,11 @@ const requestWithCredentials = axios.create({
 });
 
 export const usersAPI = {
-    getUsers (pageSize, pageNumber) {
+    getUsers(pageSize, pageNumber) {
         return requestWithCredentialsAndHeaders.get(`users?count=${pageSize}&page=${pageNumber}`)
             .then(response => response.data);
     },
-    followToggle (isFollow, userId)  {
+    followToggle(isFollow, userId) {
         return isFollow ? requestWithCredentialsAndHeaders.post(`follow/${userId}`)
                 .then(response => response.data.resultCode)
             : requestWithCredentialsAndHeaders.delete(`follow/${userId}`)
@@ -35,7 +35,11 @@ export const profileAPI = {
         return request.get(`profile/${userId}`).then(response => response.data);
     },
     getStatus(userId) {
-        return request.get(`/profile/status/${userId}`)
+        return request.get(`/profile/status/${userId}`).then(response => response.data);
+    },
+    setStatus(status) {
+        return requestWithCredentialsAndHeaders.put(`profile/status`, {status})
+            .then(response => response.resultCode);
     }
 };
 

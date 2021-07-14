@@ -1,34 +1,46 @@
 import React from "react";
 import s from "./ProfileInfo.module.css"
-import {profileAPI} from "../../../api/api";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import Loader from "../../../../assets/loader/Loader";
+
 
 class ProfileStatus extends React.Component {
-    componentDidMount() {
-        this.getStatus(this.props.match.params.userId);
-    }
-
     state = {
         editMode: false,
-        tempStatus: ""
+        status: this.props.status
     }
 
     toggleEditMode = (value) => {
-        this.setState({editMode: value})
+        if (this.props.profile.userId === this.props.userAuthData.id) {
+            this.setState({editMode: value})
+            if (!value) this.props.setStatus(this.state.status);
+        }
     }
 
-    getStatus = (userId) => {
-        profileAPI.getStatus(userId).then(response => this.setState({tempStatus: response.data}));
+    onStatusChange = (e) => {
+        this.setState({status: e.target.value});
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({status: this.props.status})
+        }
     }
 
     render() {
+        console.log("render");
+        if (!this.props.profile) return <Loader/>
         return (
             <div className={s.status}>
                 <div>
-                    {this.state.editMode ? <input type="text" value={this.state.tempStatus} autoFocus={true}
+                    {this.state.editMode ? <input type="text" value={this.state.status} autoFocus={true}
+                                                  onChange={this.onStatusChange}
                                                   onBlur={() => this.toggleEditMode(false)}/>
-                        : <div onClick={() => this.toggleEditMode(true)}>Status: {this.state.tempStatus}</div>}
+                        : <div
+                            onClick={() => this.toggleEditMode(true)}>{this.state.status ? this.state.status
+                            : this.props.profile.userId === this.props.userAuthData.id ?
+                                "Click here to change your status" : ""}</div>}
                 </div>
             </div>
         );

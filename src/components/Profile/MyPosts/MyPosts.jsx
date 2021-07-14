@@ -8,10 +8,6 @@ export default function MyPosts(props) {
     const postsConverted = props.postData
         .map(p => <Post key={p.id} name={p.name} message={p.message} likesCount={p.likesCount} />);
 
-    const addPost = () => {
-        props.addPost()
-    };
-
     const onPostChange = (e) => {
         const text = e.target.value;
         props.onPostChange(text);
@@ -25,7 +21,7 @@ export default function MyPosts(props) {
                 <div className={s.posts_add_form}>
                     <textarea value={props.newPost} onChange={onPostChange}
                               cols="100" rows="5" placeholder="Enter here" />
-                    <button onClick={addPost}>Add Post</button>
+                    <button onClick={props.addPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.posts_list}>
