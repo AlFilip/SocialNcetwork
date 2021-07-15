@@ -45,6 +45,6 @@ const mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    // RedirectWrapper,
+    RedirectWrapper,
     connect(mapStateToProps, {onPostChange, addPost, getProfile, getStatus, setStatus})
 )(ProfileContainer);

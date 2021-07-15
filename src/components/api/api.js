@@ -48,3 +48,10 @@ export const authAPI = {
         return requestWithCredentials.get(`auth/me`).then(response => response.data)
     }
 };
+
+export const loginAPI = {
+    login(login, password, rememberMe=false){
+        return requestWithCredentialsAndHeaders.post(`auth/login`, {email: login, password, rememberMe})
+            .then(response=>response.data)
+    }
+}
