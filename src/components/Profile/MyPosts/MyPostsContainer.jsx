@@ -1,15 +1,23 @@
+import React from "react";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import {addPost, onPostChange} from "../../../redux/profile-reducer";
+import {addPost} from "../../../redux/profile-reducer";
 
+class MyPostsContainer extends React.Component {
+    submit = values => {
+        this.props.addPost(values.newPost);
+    }
+
+    render() {
+        return <MyPosts {...this.props} submit={this.submit}/>
+    }
+
+}
 
 const mapStateToProps = (state) => {
     return {
-        newPost: state.profilePage.newPost,
         postData: state.profilePage.postData
     }
 }
 
-const MyPostContainer = connect(mapStateToProps, {onPostChange, addPost})(MyPosts);
-
-export default MyPostContainer;
+export default connect(mapStateToProps, {addPost})(MyPostsContainer);

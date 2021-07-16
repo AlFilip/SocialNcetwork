@@ -2,16 +2,23 @@ import React from "react";
 
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import {Field, reduxForm, reset} from "redux-form";
 
+const afterSubmit = (result, dispatch) => dispatch(reset('addPost'));
+
+let AddPostForm = props => {
+    return <form onSubmit={props.handleSubmit}>
+        <Field component={"textarea"} name={"newPost"} placeholder={"Enter here"} cols="100" rows="5"/>
+        <button>Add Post</button>
+    </form>
+}
+
+AddPostForm = reduxForm({form: "addPost",
+    onSubmitSuccess: afterSubmit,})(AddPostForm);
 
 export default function MyPosts(props) {
     const postsConverted = props.postData
         .map(p => <Post key={p.id} name={p.name} message={p.message} likesCount={p.likesCount} />);
-
-    const onPostChange = (e) => {
-        const text = e.target.value;
-        props.onPostChange(text);
-    }
     return (
         <>
             <div className={s.posts}>
@@ -19,9 +26,7 @@ export default function MyPosts(props) {
                     My Posts
                 </div>
                 <div className={s.posts_add_form}>
-                    <textarea value={props.newPost} onChange={onPostChange}
-                              cols="100" rows="5" placeholder="Enter here" />
-                    <button onClick={props.addPost}>Add Post</button>
+                    <AddPostForm onSubmit={props.submit}/>
                 </div>
             </div>
             <div className={s.posts_list}>

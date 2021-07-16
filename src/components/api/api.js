@@ -52,6 +52,9 @@ export const authAPI = {
 export const loginAPI = {
     login(login, password, rememberMe=false){
         return requestWithCredentialsAndHeaders.post(`auth/login`, {email: login, password, rememberMe})
-            .then(response=>response.data)
+            .then(response=>response.data);
+    },
+    logOut() {
+        return requestWithCredentialsAndHeaders.delete(`auth/login`).then(response=>response.data);
     }
 }

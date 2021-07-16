@@ -13,7 +13,7 @@ let reducers = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     userAuthData: authReducer,
-    form: formReducer,
+    form: formReducer
 });
 
 let store = createStore(reducers, applyMiddleware(ReduxThunk));
