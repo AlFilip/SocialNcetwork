@@ -3,7 +3,6 @@ import React from "react";
 import {profile} from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {onStatusChange} from "../../redux/profile-reducer";
 
 
 export default function Profile(props) {

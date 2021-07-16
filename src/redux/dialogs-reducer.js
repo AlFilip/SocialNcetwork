@@ -1,8 +1,6 @@
-const SEND_MESSAGE = "SEND-MESSAGE",
-    UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
-export const sendMessage = () => ({type: SEND_MESSAGE});
-export const updateMessage = (value) => ({type: UPDATE_NEW_MESSAGE, newValue: value});
+export const sendMessage = (value) => ({type: SEND_MESSAGE, value});
 
 const initState = {
     dialogData: [
@@ -14,28 +12,18 @@ const initState = {
         {id: 1, message: "Hi man"},
         {id: 2, message: "How you doing?"},
     ],
-    newMessage: "",
 };
 
 const dialogsReducer = (state = initState, action) => {
     switch (action.type) {
         case SEND_MESSAGE:
-            if (state.newMessage) {
-                const newMessageData = {
-                    id: state.messageData.slice(-1)[0].id + 1,
-                    message: state.newMessage
-                };
-                return {
-                    ...state,
-                    messageData: [...state.messageData, newMessageData],
-                    newMessage: ""
-                }
-            }
-            return state;
-        case UPDATE_NEW_MESSAGE:
+            const newMessageData = {
+                id: state.messageData.slice(-1)[0].id + 1,
+                message: action.value
+            };
             return {
                 ...state,
-                newMessage: action.newValue
+                messageData: [...state.messageData, newMessageData],
             }
         default:
             return state;

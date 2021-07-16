@@ -11,7 +11,7 @@ class ProfileStatus extends React.Component {
         status: this.props.status
     }
 
-    toggleEditMode = (value) => {
+    toggleEditMode = value => {
         if (this.props.profile.userId === this.props.userAuthData.id) {
             this.setState({editMode: value})
             if (!value) this.props.setStatus(this.state.status);
@@ -29,7 +29,6 @@ class ProfileStatus extends React.Component {
     }
 
     render() {
-        console.log("render");
         if (!this.props.profile) return <Loader/>
         return (
             <div className={s.status}>
@@ -38,9 +37,12 @@ class ProfileStatus extends React.Component {
                                                   onChange={this.onStatusChange}
                                                   onBlur={() => this.toggleEditMode(false)}/>
                         : <div
-                            onClick={() => this.toggleEditMode(true)}>{this.state.status ? this.state.status
-                            : this.props.profile.userId === this.props.userAuthData.id ?
-                                "Click here to change your status" : ""}</div>}
+                            onClick={() => this.toggleEditMode(true)}>
+                            {this.state.status ? this.state.status
+                                : this.props.profile.userId === this.props.userAuthData.id ?
+                                    "Click here to change your status" : ""}
+                        </div>
+                    }
                 </div>
             </div>
         );

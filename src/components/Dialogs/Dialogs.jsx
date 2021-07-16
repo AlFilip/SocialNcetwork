@@ -1,15 +1,19 @@
 import React from "react";
-
-import {
-    dialogs,
-    dialogsContent,
-    dialogsList,
-    messagesList,
-    addMessage,
-} from "./Dialogs.module.css"
+import s from "./Dialogs.module.css"
 import DialogItem from "./Dialog/Dialog";
 import MessageItem from "./Message/Message";
+import {Field, reduxForm, reset} from "redux-form";
 
+let NewMessageForm = props => {
+    return <form onSubmit={props.handleSubmit}>
+        <Field component={"textarea"} name={"newMessage"} cols="80" rows="5" placeholder="Enter here"/>
+        <button>Send Message</button>
+    </form>
+}
+
+const afterSubmit = (result, dispatch) => dispatch(reset('newMessage'));
+
+NewMessageForm = reduxForm({form: "newMessage", onSubmitSuccess: afterSubmit})(NewMessageForm);
 
 export default function Dialogs(props) {
     const dialogsConv = props.dialogData
@@ -17,30 +21,19 @@ export default function Dialogs(props) {
 
     const messagesConv = props.messageData
         .map(m => <MessageItem key={m.id} message={m.message}/>);
-
-    const updateMessage = (e) => {
-        const text = e.target.value;
-        props.updateMessage(text);
-    }
-    const sendMessage = () => {
-        props.sendMessage();
-    }
-
     return (
-        <div className={dialogs}>
+        <div className={s.dialogs}>
             <h2>Dialogs</h2>
-            <div className={dialogsContent}>
-                <div className={dialogsList}>
+            <div className={s.dialogsContent}>
+                <div className={s.dialogsList}>
                     {dialogsConv}
                 </div>
-                <div className={messagesList}>
+                <div className={s.messagesList}>
                     {messagesConv}
                 </div>
             </div>
-            <div className={addMessage}>
-                <textarea value={props.newMessage} onChange={updateMessage}
-                          cols="80" rows="5" placeholder="Enter here"/>
-                <button onClick={sendMessage}>Send Message</button>
+            <div className={s.addMessage}>
+                <NewMessageForm onSubmit={props.onSubmit}/>
             </div>
         </div>
     );

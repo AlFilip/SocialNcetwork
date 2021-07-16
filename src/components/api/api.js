@@ -39,7 +39,7 @@ export const profileAPI = {
     },
     setStatus(status) {
         return requestWithCredentialsAndHeaders.put(`profile/status`, {status})
-            .then(response => response.resultCode);
+            .then(response => response.data.resultCode);
     }
 };
 

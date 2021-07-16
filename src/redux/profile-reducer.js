@@ -3,9 +3,7 @@ import {profileAPI} from "../components/api/api";
 const SET_PROFILE = "SET_PROFILE";
 const ADD_POST = "ADD-POST";
 const GET_STATUS_COMPLETE = "GET_STATUS_COMPLETE";
-const CHANGE_NEW_STATUS = "CHANGE_NEW_STATUS";
 
-export const onStatusChange = (value) => ({type: CHANGE_NEW_STATUS, newValue: value});
 export const addPost = (value) => ({type: ADD_POST, value});
 export const getProfileComplete = (profile) => ({type: SET_PROFILE, profile});
 export const getStatusComplete = (status) => ({type: GET_STATUS_COMPLETE, status});
@@ -25,7 +23,9 @@ export const getStatus = userId => dispatch => {
 
 export const setStatus = (status) => dispatch => {
     profileAPI.setStatus(status).then(resultCode => {
-        if (resultCode === 0) dispatch(getStatusComplete(status))
+        if (resultCode === 0) {
+            dispatch(getStatusComplete(status))
+        }
     });
 };
 
@@ -49,11 +49,6 @@ const profileReducer = (state = initState, action) => {
             return {
                 ...state,
                 status: action.status ? action.status : "",
-            }
-        case CHANGE_NEW_STATUS:
-            return {
-                ...state,
-                status: action.newValue,
             }
         case ADD_POST:
             const newPost = {
