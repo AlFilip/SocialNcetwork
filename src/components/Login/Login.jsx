@@ -5,15 +5,19 @@ import {loginAPI} from "../api/api";
 import {connect} from "react-redux";
 import {getUserAuthData} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
+import {Input} from "../../assets/formControl/formControl";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
+
+const maxLength30 = maxLengthCreator(30);
 
 let LoginForm = props => {
     const {handleSubmit} = props;
     return <form onSubmit={handleSubmit}>
         <div>
-            <Field component={"input"} placeholder={"Login"} name={"login"} type="text"/>
+            <Field component={Input} placeholder={"Login"} name={"login"} type="text" validate={[required, maxLength30]}/>
         </div>
         <div>
-            <Field component={"input"} placeholder={"Password"} name={"password"} type="text"/>
+            <Field component={Input} placeholder={"Password"} name={"password"} type="text" validate={[required, maxLength30]}/>
         </div>
         <div>
             <Field component={"input"} name={"rememberMe"} type="checkbox"/> Remember me
