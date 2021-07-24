@@ -1,9 +1,8 @@
 import React from "react";
 
 import {Field, reduxForm} from 'redux-form'
-import {loginAPI} from "../api/api";
 import {connect} from "react-redux";
-import {getUserAuthData} from "../../redux/auth-reducer";
+import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {Input} from "../../assets/formControl/formControl";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
@@ -14,10 +13,10 @@ let LoginForm = props => {
     const {handleSubmit} = props;
     return <form onSubmit={handleSubmit}>
         <div>
-            <Field component={Input} placeholder={"Login"} name={"login"} type="text" validate={[required, maxLength30]}/>
+            <Field component={Input} placeholder={"Login"} name={"email"} type="text" validate={[required, maxLength30]}/>
         </div>
         <div>
-            <Field component={Input} placeholder={"Password"} name={"password"} type="text" validate={[required, maxLength30]}/>
+            <Field component={Input} placeholder={"Password"} name={"password"} type="password" validate={[required, maxLength30]}/>
         </div>
         <div>
             <Field component={"input"} name={"rememberMe"} type="checkbox"/> Remember me
@@ -32,15 +31,12 @@ LoginForm = reduxForm({form: "login"})(LoginForm)
 
 class Login extends React.Component {
     submit = values => {
-        const {login, password, rememberMe} = values;
-        loginAPI.login(login, password, rememberMe).then(data => {
-            this.props.getUserAuthData();
-            console.log(data);
-        });
+        const {email, password, rememberMe} = values;
+        this.props.login(email, password, rememberMe);
     }
 
     render() {
-        if (this.props.userAuthData.isAuth) return <Redirect to={"/profile"}/>
+        if (this.props.isAuth) return <Redirect to={"/profile"}/>
         return <>
             <h1>Login</h1>
             <LoginForm onSubmit={this.submit}/>
@@ -50,7 +46,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userAuthData: state.userAuthData
+        isAuth: state.userAuthData.isAuth
     }
 }
-export default connect(mapStateToProps, {getUserAuthData})(Login);
+
+export default connect(mapStateToProps, {login})(Login);
