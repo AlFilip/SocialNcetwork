@@ -18,7 +18,8 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
 
-export default function App() {
+export default function App (props) {
+    debugger
     return (
         <BrowserRouter>
             <HeaderContainer/>

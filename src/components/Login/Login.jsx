@@ -3,9 +3,11 @@ import React from "react";
 import {Field, reduxForm} from 'redux-form'
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import {Input} from "../../assets/formControl/formControl";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {compose} from "redux";
+import s from "./../../assets/formControl/formControl.module.css"
 
 const maxLength30 = maxLengthCreator(30);
 
@@ -21,6 +23,7 @@ let LoginForm = props => {
         <div>
             <Field component={"input"} name={"rememberMe"} type="checkbox"/> Remember me
         </div>
+        { props.error && <div className={s.serverError}>{props.error}</div>}
         <div>
             <button type={"submit"}>Login</button>
         </div>
@@ -50,4 +53,7 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {login})(Login);
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {login})
+    )(Login);
