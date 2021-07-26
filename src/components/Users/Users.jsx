@@ -8,7 +8,8 @@ export default function Users(props) {
     const users = props.usersList.map(u => <User key={u.id} userId={u.id} name={u.name} status={u.status}
                                                  followed={u.followed} photos={u.photos}
                                                  toggleFollow={props.toggleFollow}
-                                                 usersToggleFollowInProgress={props.usersToggleFollowInProgress}/>);
+                                                 usersToggleFollowInProgress={props.usersToggleFollowInProgress}
+                                                 isAuth={props.isAuth}/>);
     const totalPagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let page = 1; page <= totalPagesCount; page++) {

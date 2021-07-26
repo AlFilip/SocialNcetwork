@@ -13,7 +13,7 @@ export default function User(props) {
                 <NavLink to={`/profile/${props.userId}`}>
                     <img className={s.userPhoto} src={props.photos.small ? props.photos.small : userImg} alt=""/>
                 </NavLink>
-                <button disabled={props.usersToggleFollowInProgress.some(u => u === props.userId)}
+                <button disabled={!props.isAuth || props.usersToggleFollowInProgress.some(u => u === props.userId)}
                         onClick={() => props.toggleFollow(props.userId, !props.followed)}>{props.followed ? "Unfollow" : "Follow"}</button>
             </div>
             <div className={s.userName}>

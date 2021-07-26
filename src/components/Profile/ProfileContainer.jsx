@@ -1,31 +1,32 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {addPost, getProfile, getStatus, setStatus} from "../../redux/profile-reducer";
+import {addPost, clearProfile, getProfile, setStatus} from "../../redux/profile-reducer";
 import {Redirect, withRouter} from "react-router-dom";
-import RedirectWrapper from "../HOC/AuthRedirect";
 import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        this.getUserId();
+        this.showCurrentProfile();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            this.getUserId();
+            this.showCurrentProfile();
         }
     }
+    componentWillUnmount() {
+        this.props.clearProfile();
+    }
 
-    getUserId() {
+    showCurrentProfile() {
         let userId = +this.props.match.params.userId ? +this.props.match.params.userId : this.props.userAuthData.id;
-        this.props.getStatus(userId)
         this.props.getProfile(userId);
     }
 
     render() {
-        if (!this.props.userAuthData.isAuth) return <Redirect to={"/profile"} />
+        if (!this.props.userAuthData.isAuth && !this.props.match.params.userId) return <Redirect to={"/login"} />
         return (
             <Profile {...this.props}/>
         );
@@ -43,5 +44,5 @@ const mapStateToProps = (state) => {
 export default compose(
     withRouter,
     // RedirectWrapper,
-    connect(mapStateToProps, {addPost, getProfile, getStatus, setStatus})
+    connect(mapStateToProps, {addPost, getProfile, setStatus, clearProfile})
 )(ProfileContainer);

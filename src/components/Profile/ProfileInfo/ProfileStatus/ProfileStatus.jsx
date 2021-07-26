@@ -2,7 +2,6 @@ import React from "react";
 import s from "./ProfileInfo.module.css"
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
-import Loader from "../../../../assets/loader/Loader";
 
 
 class ProfileStatus extends React.Component {
@@ -29,7 +28,6 @@ class ProfileStatus extends React.Component {
     }
 
     render() {
-        if (!this.props.profile) return <Loader/>
         return (
             <div className={s.status}>
                 <div>

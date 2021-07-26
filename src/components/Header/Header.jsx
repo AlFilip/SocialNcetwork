@@ -1,6 +1,7 @@
 import React from "react";
 
 import s from "./Header.module.css";
+import {NavLink} from "react-router-dom";
 
 export default function Header(props) {
     return (
@@ -10,7 +11,9 @@ export default function Header(props) {
                     {props.login}
                     <div onClick={props.logOut}>Logout</div>
             </div>
-                : <div className={s.loginFrame}>Login</div>}
+                : <div className={s.loginFrame}>
+                    <NavLink to={"/login"} >Login</NavLink>
+                </div>}
         </header>
     )
 }
