@@ -4,6 +4,13 @@ import Users from "./Users";
 import Loader from "../../assets/loader/Loader";
 import {changePage, getUsers, toggleFollow, toggleFollowInProgress, toggleIsFetching} from "../../redux/users-reducer";
 import {compose} from "redux";
+import {
+    getCurrentPage, getIsAuth,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsersList, getUsersToggleFollowInProgress
+} from "../../redux/users-selectors";
 
 
 class UsersContainer extends React.Component {
@@ -29,13 +36,13 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        usersList: state.usersPage.usersList,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        isFetching: state.usersPage.isFetching,
-        usersToggleFollowInProgress: state.usersPage.usersToggleFollowInProgress,
-        isAuth: state.userAuthData.isAuth,
+        usersList: getUsersList(state),
+        pageSize: getPageSize(state),
+        currentPage: getCurrentPage(state),
+        totalUsersCount: getTotalUsersCount(state),
+        isFetching: getIsFetching(state),
+        usersToggleFollowInProgress: getUsersToggleFollowInProgress(state),
+        isAuth: getIsAuth(state),
     }
 };
 
