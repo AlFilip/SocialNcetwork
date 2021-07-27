@@ -42,7 +42,7 @@ export const toggleFollow = (userId, isFollow) => (dispatch) =>{
 
 const initState = {
     usersList: [],
-    pageSize: 5,
+    pageSize: 100,
     currentPage: 1,
     totalUsersCount: 0,
     isFetching: false,
