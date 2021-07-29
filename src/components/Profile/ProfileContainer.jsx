@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {addPost, clearProfile, getProfile, setus} from "../../redux/profile-reducer";
+import {addPost, clearProfile, getProfile, setStatus} from "../../redux/profile-reducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {compose} from "redux";
 

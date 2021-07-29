@@ -11,7 +11,6 @@ class MyPostsContainer extends React.Component {
     render() {
         return <MyPosts {...this.props} submit={this.submit}/>
     }
-
 }
 
 const mapStateToProps = (state) => {

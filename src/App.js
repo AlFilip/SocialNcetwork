@@ -13,12 +13,12 @@ import RightFiller from "./components/Fillers/RightFiller";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
-import ProfileContainerWithUrlRoute from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {setInitApp} from "./redux/app-reducer";
 import Loader from "./assets/loader/Loader";
+import ProfileContainerWithHooks from "./components/Profile/ProfileContainerWithHooks";
 
 
 class App extends React.Component {
@@ -37,7 +37,7 @@ class App extends React.Component {
                 <div className="app-wrapper-content">
                     <Route exact path={'/dialogs'}
                            render={() => <DialogsContainer/>}/>
-                    <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithUrlRoute/>}/>
+                    <Route path={'/profile/:userId?'} render={() => <ProfileContainerWithHooks/>}/>
                     <Route path={'/music'} render={Music}/>
                     <Route path={'/news'} render={News}/>
                     <Route path={'/settings'} render={Settings}/>
