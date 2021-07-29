@@ -32,7 +32,7 @@ export const login = (email, password, rememberMe) => dispatch => {
         if (data.resultCode === 0) {
             dispatch(getUserAuthData());
         } else {
-            dispatch(stopSubmit("login", {_error: data.messages.length > 0 ? data.messages[0]: "Some error"}))
+            dispatch(stopSubmit("login", {_error: data.messages.length > 0 ? data.messages[0] : "Some error"}))
         }
     });
 }

@@ -1,10 +1,8 @@
 import React from "react";
 import s from "./ProfileInfo.module.css"
-import {compose} from "redux";
-import {withRouter} from "react-router-dom";
 
 
-class ProfileStatus extends React.Component {
+export default class ProfileStatus extends React.Component {
     state = {
         editMode: false,
         status: this.props.status
@@ -17,7 +15,7 @@ class ProfileStatus extends React.Component {
         }
     }
 
-    onStatusChange = (e) => {
+    onStatusChange = e => {
         this.setState({status: e.target.value});
     }
 
@@ -46,5 +44,3 @@ class ProfileStatus extends React.Component {
         );
     }
 }
-
-export default compose(withRouter)(ProfileStatus);

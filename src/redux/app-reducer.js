@@ -2,7 +2,7 @@ import {getUserAuthData} from "./auth-reducer";
 
 const SET_INIT_SUCCESS = "SET_INIT_SUCCESS";
 
-export const setInitSuccess = (isInit) => ({type: SET_INIT_SUCCESS, isInit});
+export const setInitSuccess = isInit => ({type: SET_INIT_SUCCESS, isInit});
 
 export const setInitApp = () => dispatch => {
     const promise = dispatch(getUserAuthData());
